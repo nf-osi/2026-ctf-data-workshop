@@ -5,6 +5,7 @@
 Make sure you have:
 - A laptop with Chrome or Firefox
 - Logged in to your [Synapse account](https://www.synapse.org) — if you don't have one, see [SETUP.md](../SETUP.md)
+- Completed the [Track 2 software setup](setup.md) — R, Node.js, and Claude Code must be installed and your API key must be set
 
 ---
 
@@ -70,21 +71,31 @@ For this workshop we will use the **processed RNA-seq data** — this is the out
 
 ## Part 3: Analyze the Data
 
-We will use an AI assistant (<!-- TODO: specify tool — Claude, ChatGPT, Gemini, etc. -->) alongside an analysis environment (<!-- TODO: specify — Posit Cloud, Google Colab, local R, etc. -->) to explore the data and reproduce key results from the paper.
+Your analysis environment is **Claude Code running in a terminal alongside R**. Claude Code is an AI assistant that can write R scripts, run them, interpret error messages, and explain results — all from the command line. You direct the analysis in plain English; Claude Code does the coding.
 
-### Step 3.1 — Set up your analysis environment
+### Step 3.1 — Start Claude Code
 
-<!-- TODO: Add specific setup instructions for the chosen environment -->
+1. Open a terminal and navigate to your workshop directory:
+   ```
+   cd nf-workshop
+   ```
+2. Start Claude Code:
+   ```
+   claude
+   ```
+3. You should see the Claude Code prompt. You are now ready to analyze data.
 
-1. Open <!-- TODO: environment link -->
-2. Sign in with your <!-- TODO: account type --> account
-3. Open the workshop notebook or create a new session
+> **How this works:** You type a request in plain English. Claude Code writes an R script, runs it with `Rscript`, and shows you the output. You can ask follow-up questions, request changes, or ask Claude Code to explain what the code is doing at any point.
 
 ### Step 3.2 — Load the data
 
-In your analysis environment, load the count matrix and metadata you downloaded from Synapse.
+Move the files you downloaded from Synapse into your `nf-workshop` folder, then ask Claude Code:
 
-**Ask the AI assistant:** *"I have an RNA-seq count matrix and a metadata table. The counts are in a file called [filename]. How do I load this into R and check that it looks correct?"*
+**Prompt:** *"I have RNA-seq data from a study of NF1 cutaneous neurofibroma Schwann cells. The count matrix file is called [filename] and the metadata file is called [filename]. Please write an R script to load both files, check that the sample names match between them, and print the dimensions of the count matrix."*
+
+Pay attention to:
+- How many rows (genes) and columns (samples) does the count matrix have?
+- Do the sample names in the metadata match the column names in the count matrix?
 
 Pay attention to:
 - How many rows (genes) and columns (samples) does the count matrix have?
@@ -94,7 +105,7 @@ Pay attention to:
 
 RNA-seq counts must be normalized before samples can be compared. The paper used **TMM normalization** (Trimmed Mean of M-values) via the edgeR package.
 
-**Ask the AI assistant:** *"How do I normalize RNA-seq count data using TMM normalization in R with edgeR? I have 14 samples: 7 primary Schwann cell cultures and 7 immortalized Schwann cell lines."*
+**Prompt:** *"Using the count matrix we just loaded, normalize the data using TMM normalization with the edgeR package. I have 14 samples: 7 primary Schwann cell cultures and 7 immortalized Schwann cell lines. After normalizing, run a PCA and save a plot colored by condition (primary vs. immortalized) as pca.pdf."*
 
 After normalizing:
 1. Run a PCA on the normalized data
@@ -110,7 +121,7 @@ Differential expression (DE) analysis asks: which genes are expressed at signifi
 
 The paper used **limma + voom** with a paired design (each immortalized line is matched to its primary culture from the same donor).
 
-**Ask the AI assistant:** *"I want to do a paired differential expression analysis comparing immortalized vs. primary conditions using limma-voom in R. I have 7 matched pairs. How do I set up the design matrix to account for the pairing?"*
+**Prompt:** *"Now run a paired differential expression analysis comparing immortalized vs. primary conditions using limma-voom in R. I have 7 matched pairs — each immortalized line has a matched primary culture from the same donor. Set up the design matrix to account for the pairing, then apply a significance threshold of BH-adjusted p-value < 0.05 and absolute log2 fold change > 2. Save the full results table as de_results.csv and print a summary of how many genes are significant."*
 
 Apply the significance thresholds used in the paper:
 - BH-adjusted p-value < 0.05
@@ -122,7 +133,7 @@ How many genes pass these thresholds? Compare your number to the **993 DEGs** re
 
 A volcano plot shows fold change (x-axis) against statistical significance (y-axis) for every gene tested.
 
-**Ask the AI assistant:** *"How do I make a volcano plot in R using ggplot2? I want to color genes that are significantly up-regulated in immortalized cells in blue and significantly up-regulated in primary cells in red."*
+**Prompt:** *"Using the DE results table, make a volcano plot with ggplot2. Color genes significantly up-regulated in immortalized cells blue, genes significantly up-regulated in primary cells red, and non-significant genes grey. Label the NF1 gene on the plot. Save it as volcano.pdf."*
 
 Your plot should resemble **Figure 5B** from the paper.
 
@@ -137,7 +148,7 @@ The researchers needed to confirm that the immortalized cells still behave like 
 - **CDK4** — the mCdk4 transgene introduced during immortalization (should be high in immortalized cells)
 - **hTERT (TERT)** — the telomerase transgene (should be high in immortalized cells)
 
-**Ask the AI assistant:** *"How do I extract and plot the normalized expression values for a specific list of genes across all 14 samples?"*
+**Prompt:** *"From the normalized data, extract the expression values for S100B, MPZ, CDK4, and TERT across all 14 samples. Make a dot plot or bar chart showing expression by sample, colored by condition (primary vs. immortalized). Save it as marker_genes.pdf."*
 
 ### Step 3.7 — Run pathway enrichment analysis
 
@@ -145,7 +156,7 @@ With the list of 993 DEGs, we can ask: what biological processes are most affect
 
 The paper used **g:Profiler** (gprofiler2 in R) to find enriched Gene Ontology terms, KEGG pathways, and Reactome pathways.
 
-**Ask the AI assistant:** *"I have a list of differentially expressed gene symbols. How do I run pathway enrichment analysis using the gprofiler2 R package?"*
+**Prompt:** *"Using the gprofiler2 R package, run pathway enrichment analysis on the differentially expressed genes. Run it separately for genes up-regulated in immortalized cells and genes up-regulated in primary cells. Query Gene Ontology, KEGG, and Reactome. Print the top 10 enriched terms for each group and save the full results as pathway_results.csv."*
 
 Run enrichment separately for:
 - Genes **up-regulated** in immortalized cells
