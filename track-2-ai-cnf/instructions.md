@@ -1,186 +1,187 @@
-# Track 2 Instructions: Using AI to Analyze cNF RNA-seq Data
+# Track 2: Using Claude Code to Explore cNF RNA-seq Data
 
 ## Before You Start
 
 Make sure you have:
-- A laptop with Chrome or Firefox
-- Logged in to your [Synapse account](https://www.synapse.org) — if you don't have one, see [SETUP.md](../SETUP.md)
-- Completed the [Track 2 software setup](setup.md) — R, Node.js, and Claude Code must be installed and your API key must be set
+- Connected to your workshop EC2 environment (see [setup.md](setup.md))
+- Logged in to your [Synapse account](https://www.synapse.org) in your browser
+- A terminal open in the VS Code interface
+
+---
+
+## How This Works
+
+In this track you will explore a real NF1 research dataset using **Claude Code** — an AI assistant that lives in your terminal. You ask it scientific questions in plain English. It figures out how to answer them, writes and runs whatever code is needed, and shows you the results.
+
+You are the scientist. Claude Code is your analyst.
+
+A few things worth knowing before you start:
+
+- **Claude Code remembers your conversation.** You can build on previous questions, ask follow-ups, or say "actually, do that differently."
+- **You can ask it to explain itself.** If it does something you don't understand, ask "what did you just do and why?"
+- **It will make mistakes sometimes.** If a result looks wrong, say so. It will debug and retry.
+- **There are no wrong questions.** The prompts in this guide are starting points — go off-script whenever something looks interesting.
 
 ---
 
 ## Part 1: Understand the Study
 
-### Step 1.1 — Read the paper
+### Read the paper
 
-Open the paper:
+Open the paper in your browser:
 
 > Wallace et al., "Immortalization and characterization of Schwann cell lines derived from NF1-associated cutaneous neurofibromas." *PLOS ONE*, 2026.
 > **[https://doi.org/10.1371/journal.pone.0340183](https://doi.org/10.1371/journal.pone.0340183)**
 
-You don't need to read every word. Focus on these sections:
+You don't need to read every word. Focus on:
 
-- **Abstract** — What is the study about? What did the researchers make, and why?
-- **Introduction** — Why are cNF cell lines useful? What problem do they solve for NF1 researchers?
-- **RNA-seq section of Methods** — What technology was used, how many samples, and how was the data analyzed?
-- **Figure 5** — This is the key RNA-seq figure. It has four panels: a PCA plot, a volcano plot, a heatmap, and pathway enrichment results.
-- **Data Availability statement** — Where is the data deposited?
+- **Abstract** — what did the researchers make, and why?
+- **Figure 5** — four panels showing the RNA-seq results: a PCA plot, a volcano plot, a heatmap, and pathway enrichment results. This is what you will reproduce and extend.
+- **Data Availability** — where is the data deposited?
 
-**Discussion questions:**
-- The study compares two conditions: primary Schwann cells vs. immortalized Schwann cells. What does "immortalized" mean, and why does it matter for research?
-- In Figure 5A (PCA), what does the separation between the two groups tell you?
-- In Figure 5B (volcano plot), what do the colors represent? What does the x-axis measure?
-- The paper notes that *NF1* gene expression is **not** significantly different between the two conditions. Why is this an important finding for the cell lines to be useful as NF1 disease models?
+**Key biology to keep in mind:**
+
+The study took Schwann cells from cutaneous neurofibromas (cNF tumors from NF1 patients), immortalized them using two genetic tricks (hTERT and mCdk4), and then asked: *do the immortalized cells still behave like the original tumor cells?* RNA-seq is how they answered that question.
+
+You have 14 samples: 7 primary cultures (the original cells) and 7 immortalized lines, matched by donor.
 
 ---
 
 ## Part 2: Find the Data
 
-### Step 2.1 — Navigate to the NF Data Portal
+### Navigate to the NF Data Portal
 
-The paper's data is hosted on the [NF Data Portal](https://nf.synapse.org), a resource maintained by Sage Bionetworks and the Children's Tumor Foundation.
+1. Go to **[nf.synapse.org](https://nf.synapse.org)** and log in with your Synapse account
+2. Explore the data catalog — can you find a dataset related to this paper?
+3. Navigate to the full data collection: [https://doi.org/10.7303/syn11374339](https://doi.org/10.7303/syn11374339)
+4. Browse the folder structure. What types of data are available beyond RNA-seq?
 
-1. Go to **[nf.synapse.org](https://nf.synapse.org)**
-2. Browse the data catalog and look for datasets related to cutaneous neurofibromas or the Wallace et al. paper
-3. Alternatively, go directly to the Synapse collection linked in the paper's Data Availability section
-
-> **Tip:** The full data collection lives at [https://doi.org/10.7303/syn11374339](https://doi.org/10.7303/syn11374339)
-
-### Step 2.2 — Explore the Synapse collection
-
-1. Navigate to [synapse.org](https://www.synapse.org) and log in
-2. Go to Synapse ID **syn11374339** (type it in the search bar or paste it into the URL: `https://www.synapse.org/Synapse:syn11374339`)
-3. Explore the files and folders. Can you find:
-   - Raw RNA-seq data?
-   - Processed RNA-seq data?
-   - Metadata files describing the samples?
-
-### Step 2.3 — Locate the processed RNA-seq data
-
-For this workshop we will use the **processed RNA-seq data** — this is the output of the alignment and quantification pipeline, ready for downstream analysis.
-
-1. Navigate to Synapse ID **syn29529772**
-2. Review the files available. You should see gene-level count matrices and associated metadata.
-3. Download the files you will need for analysis:
-   - Gene count matrix
-   - Sample metadata table
-
-> **Note on raw vs. processed data:** The raw data (fastq files) is also available at `syn29390037`. Processing raw RNA-seq data requires significant computational resources and time. For this workshop we start from the processed counts, which is the typical starting point for differential expression analysis.
+> The workshop EC2 already has the RNA-seq data downloaded for you — the goal here is to understand how data gets from a published paper to a public repository, and how to find it.
 
 ---
 
-## Part 3: Analyze the Data
+## Part 3: Explore with Claude Code
 
-Your analysis environment is **Claude Code running in a terminal alongside R**. Claude Code is an AI assistant that can write R scripts, run them, interpret error messages, and explain results — all from the command line. You direct the analysis in plain English; Claude Code does the coding.
+Open a terminal in VS Code and start your session:
 
-### Step 3.1 — Start Claude Code
+```bash
+cd ~/nf-workshop
+claude
+```
 
-1. Open a terminal and navigate to your workshop directory:
-   ```
-   cd nf-workshop
-   ```
-2. Start Claude Code:
-   ```
-   claude
-   ```
-3. You should see the Claude Code prompt. You are now ready to analyze data.
+### Orient Claude Code to the dataset
 
-> **How this works:** You type a request in plain English. Claude Code writes an R script, runs it with `Rscript`, and shows you the output. You can ask follow-up questions, request changes, or ask Claude Code to explain what the code is doing at any point.
+Before asking analysis questions, give Claude Code context about what you're working with. Something like:
 
-### Step 3.2 — Load the data
+> *"I'm working with RNA-seq data from a study of NF1 cutaneous neurofibroma Schwann cells. There are 14 samples: 7 primary cultures and 7 immortalized Schwann cell lines, matched by donor. The count matrix is in `data/salmon.merged.gene_counts.tsv` and the sample metadata is in `data/samplesheet.valid.csv`. Please load the data, check it looks correct, and give me a brief summary of what we're working with."*
 
-Move the files you downloaded from Synapse into your `nf-workshop` folder, then ask Claude Code:
-
-**Prompt:** *"I have RNA-seq data from a study of NF1 cutaneous neurofibroma Schwann cells. The count matrix file is called [filename] and the metadata file is called [filename]. Please write an R script to load both files, check that the sample names match between them, and print the dimensions of the count matrix."*
-
-Pay attention to:
-- How many rows (genes) and columns (samples) does the count matrix have?
-- Do the sample names in the metadata match the column names in the count matrix?
-
-Pay attention to:
-- How many rows (genes) and columns (samples) does the count matrix have?
-- Do the sample names in the metadata match the column names in the count matrix?
-
-### Step 3.3 — Normalize the data and run a PCA
-
-RNA-seq counts must be normalized before samples can be compared. The paper used **TMM normalization** (Trimmed Mean of M-values) via the edgeR package.
-
-**Prompt:** *"Using the count matrix we just loaded, normalize the data using TMM normalization with the edgeR package. I have 14 samples: 7 primary Schwann cell cultures and 7 immortalized Schwann cell lines. After normalizing, run a PCA and save a plot colored by condition (primary vs. immortalized) as pca.pdf."*
-
-After normalizing:
-1. Run a PCA on the normalized data
-2. Color the points by condition (primary vs. immortalized)
-
-**What to look for:** Your PCA should look similar to **Figure 5A** in the paper. The two groups should separate, mostly along PC1 or PC2.
-
-**Discussion question:** What does it mean if two samples that are supposed to be a "matched pair" (same donor, primary vs. immortalized) cluster closer together than two different donors in the same condition?
-
-### Step 3.4 — Identify differentially expressed genes
-
-Differential expression (DE) analysis asks: which genes are expressed at significantly different levels between the two conditions?
-
-The paper used **limma + voom** with a paired design (each immortalized line is matched to its primary culture from the same donor).
-
-**Prompt:** *"Now run a paired differential expression analysis comparing immortalized vs. primary conditions using limma-voom in R. I have 7 matched pairs — each immortalized line has a matched primary culture from the same donor. Set up the design matrix to account for the pairing, then apply a significance threshold of BH-adjusted p-value < 0.05 and absolute log2 fold change > 2. Save the full results table as de_results.csv and print a summary of how many genes are significant."*
-
-Apply the significance thresholds used in the paper:
-- BH-adjusted p-value < 0.05
-- |log2 fold change| > 2
-
-How many genes pass these thresholds? Compare your number to the **993 DEGs** reported in the paper.
-
-### Step 3.5 — Make a volcano plot
-
-A volcano plot shows fold change (x-axis) against statistical significance (y-axis) for every gene tested.
-
-**Prompt:** *"Using the DE results table, make a volcano plot with ggplot2. Color genes significantly up-regulated in immortalized cells blue, genes significantly up-regulated in primary cells red, and non-significant genes grey. Label the NF1 gene on the plot. Save it as volcano.pdf."*
-
-Your plot should resemble **Figure 5B** from the paper.
-
-**Discussion question:** Locate *NF1* on your volcano plot. Where does it fall? Is it significantly different between conditions? Why does this matter?
-
-### Step 3.6 — Check Schwann cell marker genes
-
-The researchers needed to confirm that the immortalized cells still behave like Schwann cells. Look up the expression of these key marker genes in your data:
-
-- **S100B** — a canonical Schwann cell marker
-- **MPZ** (myelin protein zero) — Schwann cell identity
-- **CDK4** — the mCdk4 transgene introduced during immortalization (should be high in immortalized cells)
-- **hTERT (TERT)** — the telomerase transgene (should be high in immortalized cells)
-
-**Prompt:** *"From the normalized data, extract the expression values for S100B, MPZ, CDK4, and TERT across all 14 samples. Make a dot plot or bar chart showing expression by sample, colored by condition (primary vs. immortalized). Save it as marker_genes.pdf."*
-
-### Step 3.7 — Run pathway enrichment analysis
-
-With the list of 993 DEGs, we can ask: what biological processes are most affected by immortalization?
-
-The paper used **g:Profiler** (gprofiler2 in R) to find enriched Gene Ontology terms, KEGG pathways, and Reactome pathways.
-
-**Prompt:** *"Using the gprofiler2 R package, run pathway enrichment analysis on the differentially expressed genes. Run it separately for genes up-regulated in immortalized cells and genes up-regulated in primary cells. Query Gene Ontology, KEGG, and Reactome. Print the top 10 enriched terms for each group and save the full results as pathway_results.csv."*
-
-Run enrichment separately for:
-- Genes **up-regulated** in immortalized cells
-- Genes **up-regulated** in primary cells
-
-**What to expect:** Genes up-regulated in immortalized cells should enrich for **cell cycle** pathways — this is expected because mCdk4 drives cell division. Compare your top enriched terms to **Figure 5D** in the paper.
+Claude Code will load the files, tell you about the data structure, and flag anything unusual. Read its response — this is useful context for everything that follows.
 
 ---
 
-## Part 4: Interpret and Discuss
+### Checkpoint 1 — Quality and overview
 
-### Key questions to consider
+Get a feel for the data before diving into results.
 
-1. The immortalized cell lines were created as a research tool for studying cNF. Based on the RNA-seq data, do they appear to retain the essential features of the original tumor cells? What evidence supports your answer?
+**Ask something like:**
+> *"Are there any outlier samples I should know about? Show me a PCA plot colored by condition and save it as a PDF."*
 
-2. The paper identifies hundreds of genes that change during immortalization. Does this concern you as a researcher who wants to use these lines to study NF1 biology? Why or why not?
+**Follow-up ideas:**
+- "Do matched pairs (same donor, primary vs. immortalized) cluster together?"
+- "What fraction of the variance do PC1 and PC2 explain, and what does that tell us?"
+- "Show me the sample-to-sample correlation heatmap."
 
-3. How did using the AI assistant change how you worked through this analysis? What kinds of questions was it most helpful for?
+**What to look for:** Your PCA should broadly match **Figure 5A** in the paper — the two conditions should separate. If they don't, something may be wrong with how the metadata was matched to the counts.
 
-### Bonus exercises
+---
 
-- Look up the expression of genes involved in the **RAS/MAPK signaling pathway** (KRAS, HRAS, MAP2K1, MAPK1). Are any of these differentially expressed?
-- The paper also generated WES and WGS data for these cell lines. Navigate the Synapse collection and find where that data lives. What kinds of files are available?
-- Find the analysis code for this paper on GitHub: [https://github.com/nf-osi/cnf-cell-lines](https://github.com/nf-osi/cnf-cell-lines). Compare the approach in the code to what you did in this workshop.
+### Checkpoint 2 — What changed?
+
+Ask the central biological question of the study.
+
+**Ask something like:**
+> *"What genes are most significantly changed by immortalization? Run a differential expression analysis comparing immortalized to primary cells, accounting for the paired donor design. Make a volcano plot and save it as a PDF."*
+
+**Follow-up ideas:**
+- "How many genes are significantly up or down?"
+- "What are the top 20 most upregulated genes? Do any of them make biological sense given that we introduced hTERT and mCdk4?"
+- "Where does NF1 itself fall on the volcano plot? Is its expression affected by immortalization?"
+- "Label the top 10 most significant genes on the volcano plot."
+
+**What to look for:** The paper reports 993 differentially expressed genes using adjusted p < 0.05 and |log2FC| > 2. Your number should be in the same ballpark — exact agreement depends on implementation choices.
+
+---
+
+### Checkpoint 3 — Gene set enrichment with Enrichr
+
+This is where it gets interesting. Instead of just listing differentially expressed genes, ask Claude Code to find out what *biological programs* are activated or suppressed.
+
+**Ask something like:**
+> *"Use Enrichr to run gene set enrichment on the genes upregulated in immortalized cells. Query the MSigDB Hallmarks, KEGG 2021, and DisGeNET databases. What pathways and diseases are most enriched?"*
+
+Then flip it:
+> *"Do the same for genes upregulated in primary cells — what are we losing when we immortalize? Are Schwann cell identity programs being downgraded?"*
+
+**Follow-up ideas:**
+- "The DisGeNET results are interesting — are any NF1 or neurofibroma-related terms enriched? What about other cancers?"
+- "Run enrichment on just the top 100 most upregulated genes. Does the picture change?"
+- "Visualize the top enriched terms from each condition as a bar chart and save it."
+- "Cross-reference the upregulated genes against a list of known NF1-pathway genes. How much overlap is there?"
+
+**What to look for:** Immortalized cells should strongly enrich for cell cycle and proliferation pathways — expected because mCdk4 drives cell division. The primary cells (genes lost during immortalization) may show enrichment for Schwann cell differentiation and myelination terms.
+
+---
+
+### Checkpoint 4 — Dig into the biology
+
+Pick a thread from Checkpoint 3 that surprised you and pull on it.
+
+Some directions that are worth exploring:
+
+**Schwann cell identity:**
+> *"Make a plot showing the expression of key Schwann cell markers (S100B, MPZ, PMP22, SOX10) across all 14 samples. Are the immortalized cells still recognizably Schwann cells at the transcriptome level?"*
+
+**The NF1 pathway:**
+> *"Plot the expression of NF1 and key RAS/MAPK pathway genes (KRAS, HRAS, BRAF, MAP2K1, MAPK1, MAPK3) across all samples. Does anything stand out?"*
+
+**Drug targets:**
+> *"Of the genes most upregulated in immortalized cells, which ones are known drug targets? Are any of them targeted by drugs that are already in clinical use or in trials for NF1?"*
+
+**Transcription factors:**
+> *"Use Enrichr's ENCODE_and_ChEA_Consensus_TFs_from_ChIP-X database to find transcription factors whose targets are enriched in the upregulated gene set. Which transcription factors might be driving the immortalization signature?"*
+
+---
+
+### Checkpoint 5 — Make something shareable
+
+Bring the analysis together.
+
+**Ask something like:**
+> *"Generate a single summary figure combining the PCA, volcano plot, and a bar chart of the top 10 Enrichr Hallmark terms for each condition. Arrange them in a grid and save as summary_figure.pdf."*
+
+Then:
+> *"Write a 3-sentence plain language summary of what this RNA-seq data tells us about these immortalized cNF Schwann cell lines — suitable for someone who doesn't know bioinformatics."*
+
+---
+
+### Open exploration
+
+You have time — go wherever the data takes you. Some starting points if you're not sure where to go:
+
+- "What are the most highly expressed genes in primary cNF cells overall? Are any of them potential biomarkers?"
+- "Is there any evidence of epithelial-to-mesenchymal transition in the immortalized cells?"
+- "Compare the expression pattern of these samples to what you know about NF1-related malignant peripheral nerve sheath tumors (MPNSTs). Do the immortalized cells look more like cNF or more like MPNST?"
+- "Show me a heatmap of the top 50 differentially expressed genes across all 14 samples."
+- "Can you write a methods section paragraph describing the analysis we just did?"
+
+---
+
+## Part 4: Reflect
+
+1. What result surprised you the most?
+2. The immortalized cell lines were created as a tool for studying cNF. Based on everything you just found, would you trust them as a model for NF1 biology? What caveats would you mention?
+3. What question would you ask next if you had more time?
+4. How did using Claude Code change how you approached this analysis compared to how you would have done it before?
 
 ---
 
