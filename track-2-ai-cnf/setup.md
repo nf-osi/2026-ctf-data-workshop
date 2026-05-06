@@ -1,7 +1,5 @@
 # Track 2 Setup Guide
 
-## Option A: Use the Workshop EC2 Environment (recommended)
-
 The workshop provides a pre-configured cloud environment for each participant. You do not need to install anything.
 
 ### What you need
