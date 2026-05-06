@@ -14,13 +14,13 @@ Participant browser → http://<public-ip>:8080 → code-server → terminal →
 
 - AWS CLI installed and configured (`aws configure`) with an IAM user that has EC2 permissions
 - `jq` installed (`brew install jq` on macOS)
-- An Anthropic API key to distribute to participants
+- An Anthropic API key (injected into instances at launch time)
 
 ## Workflow
 
 ```
 1. Run security-group.sh   ← once, creates the security group
-2. Run bootstrap.sh        ← once, on a temporary EC2, then save as AMI
+2. Run build-ami.sh        ← once, builds the AMI automatically
 3. Run launch.sh           ← morning of the workshop
 4. Hand out credentials    ← from credentials.csv output by launch.sh
 5. Run teardown.sh         ← end of day
@@ -31,9 +31,12 @@ Participant browser → http://<public-ip>:8080 → code-server → terminal →
 | File | Purpose |
 |------|---------|
 | `security-group.sh` | Creates the EC2 security group for workshop instances |
-| `bootstrap.sh` | Installs all software; run on a temporary EC2 to build the AMI |
+| `bootstrap.sh` | Installs all software on an EC2; called by `build-ami.sh` |
+| `build-ami.sh` | Launches a temp EC2, runs bootstrap, snapshots an AMI, cleans up |
 | `launch.sh` | Launches N instances from the AMI; outputs credentials CSV |
 | `teardown.sh` | Terminates all workshop instances by tag |
+| `test-launch.sh` | Launches a single test instance |
+| `test-teardown.sh` | Terminates the test instance |
 
 ## Configuration
 

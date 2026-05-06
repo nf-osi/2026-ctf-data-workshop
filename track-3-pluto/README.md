@@ -1,12 +1,12 @@
 # Track 3: Analyzing NF Portal Datasets on Pluto
 
-**Organized by the [Children's Tumor Foundation](https://www.ctf.org), [Sage Bionetworks](https://sagebionetworks.org), and [Pluto Biosciences](https://pluto.bio)**
+**Organized by the [Children's Tumor Foundation](https://www.ctf.org), [Sage Bionetworks](https://sagebionetworks.org), and [Pluto](https://pluto.bio)**
 
 ---
 
 ## Overview
 
-In this track, you will use [Pluto Biosciences](https://pluto.bio) — a cloud-based bioinformatics platform — to perform interactive analyses on NF datasets from the [NF Data Portal](https://nf.synapse.org). No local software installation or coding is required. Pluto provides a visual, guided interface that makes bioinformatic analysis accessible to researchers at all levels.
+In this track, you will use [Pluto](https://pluto.bio) — a cloud-based bioinformatics platform — to perform interactive analyses on NF datasets from the [NF Data Portal](https://nf.synapse.org). No local software installation or coding is required. Pluto provides a visual, guided interface that makes bioinformatic analysis accessible to researchers at all levels.
 
 ## What You Will Do
 

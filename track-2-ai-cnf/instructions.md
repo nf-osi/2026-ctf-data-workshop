@@ -4,8 +4,8 @@
 
 Make sure you have:
 - Connected to your workshop EC2 environment (see [setup.md](setup.md))
-- Logged in to your [Synapse account](https://www.synapse.org) in your browser
 - A terminal open in the VS Code interface
+- Logged in to [synapse.org](https://www.synapse.org) in your browser — you will need this to find and download data in Part 2
 
 ---
 
@@ -56,22 +56,33 @@ You have 14 samples: 7 primary cultures (the original cells) and 7 immortalized 
 3. Navigate to the full data collection: [https://doi.org/10.7303/syn11374339](https://doi.org/10.7303/syn11374339)
 4. Browse the folder structure. What types of data are available beyond RNA-seq?
 
-> The workshop EC2 already has the RNA-seq data downloaded for you — the goal here is to understand how data gets from a published paper to a public repository, and how to find it.
+### Download the data using Claude Code
+
+Open a terminal in VS Code and start Claude Code:
+
+```bash
+claude
+```
+
+Then ask Claude Code to download the two files you need from Synapse. It will use the `synapse` command-line client that is pre-installed on your machine. You will need to provide your Synapse username and password when it asks.
+
+> *"Please download the RNA-seq count matrix (syn29532377) and sample metadata (syn29530880) from Synapse into the `data/` folder."*
+
+Once it's done you should have:
+
+```
+~/nf-workshop/data/
+├── salmon.merged.gene_counts.tsv
+└── samplesheet.valid.csv
+```
 
 ---
 
 ## Part 3: Explore with Claude Code
 
-Open a terminal in VS Code and start your session:
-
-```bash
-cd ~/nf-workshop
-claude
-```
-
 ### Orient Claude Code to the dataset
 
-Before asking analysis questions, give Claude Code context about what you're working with. Something like:
+Now that the data is downloaded, give Claude Code context about what you're working with. Something like:
 
 > *"I'm working with RNA-seq data from a study of NF1 cutaneous neurofibroma Schwann cells. There are 14 samples: 7 primary cultures and 7 immortalized Schwann cell lines, matched by donor. The count matrix is in `data/salmon.merged.gene_counts.tsv` and the sample metadata is in `data/samplesheet.valid.csv`. Please load the data, check it looks correct, and give me a brief summary of what we're working with."*
 

@@ -7,11 +7,15 @@ set -euo pipefail
 
 AWS_REGION="${AWS_REGION:-us-east-1}"
 
+PROFILE_ARGS=()
+[[ -n "${AWS_PROFILE:-}" ]] && PROFILE_ARGS=(--profile "$AWS_PROFILE")
+
 if [[ -n "${1:-}" ]]; then
   INSTANCE_ID="$1"
 else
   INSTANCE_ID=$(aws ec2 describe-instances \
     --region "$AWS_REGION" \
+    "${PROFILE_ARGS[@]}" \
     --filters \
       "Name=tag:participant,Values=test" \
       "Name=tag:workshop,Values=nf-workshop-2026" \
@@ -29,6 +33,7 @@ fi
 
 aws ec2 terminate-instances \
   --region "$AWS_REGION" \
+  "${PROFILE_ARGS[@]}" \
   --instance-ids "$INSTANCE_ID" \
   --query 'TerminatingInstances[0].{ID:InstanceId,State:CurrentState.Name}' \
   --output table

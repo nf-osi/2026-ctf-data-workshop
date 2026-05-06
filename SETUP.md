@@ -33,7 +33,7 @@ Some datasets may require you to certify your Synapse account or request specifi
 
 ## Track 3: Pluto Account
 
-Track 3 uses [Pluto Biosciences](https://pluto.bio) for interactive analysis. Workshop participants will be provided with access credentials or a workspace link on the day of the event. No advance setup is needed beyond having a Synapse account.
+Track 3 uses [Pluto](https://pluto.bio) for interactive analysis. Workshop participants will be provided with access credentials or a workspace link on the day of the event. No advance setup is needed beyond having a Synapse account.
 
 ---
 

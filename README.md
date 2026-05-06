@@ -2,7 +2,7 @@
 
 **A satellite event of the 2026 Children's Tumor Foundation NF Conference**
 
-Organized by the [Children's Tumor Foundation](https://www.ctf.org), [Sage Bionetworks](https://sagebionetworks.org), and [Pluto Biosciences](https://pluto.bio)
+Organized by the [Children's Tumor Foundation](https://www.ctf.org), [Sage Bionetworks](https://sagebionetworks.org), and [Pluto](https://pluto.bio)
 
 ---
 
@@ -31,7 +31,7 @@ Apply AI-assisted tools to analyze cutaneous neurofibroma (cNF) datasets. Explor
 ### Track 3 — Analyzing NF Portal Datasets on Pluto
 > **Best for:** Participants interested in interactive bioinformatics analysis. A Synapse account is required.
 
-Use the Pluto Biosciences platform to perform and visualize bioinformatic analyses on datasets from the NF Data Portal — no local software installation needed.
+Use the Pluto platform to perform and visualize bioinformatic analyses on datasets from the NF Data Portal — no local software installation needed.
 
 [Go to Track 3 →](track-3-pluto/)
 

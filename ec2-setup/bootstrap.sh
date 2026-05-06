@@ -10,23 +10,12 @@
 #   4. Terminate this temporary instance.
 #   5. Paste the AMI ID into launch.sh.
 #
-# This script requires a SYNAPSE_AUTH_TOKEN environment variable to download
-# workshop data. Generate a Personal Access Token at:
-# https://www.synapse.org/#!PersonalAccessTokens:
-#
-#   export SYNAPSE_AUTH_TOKEN="your-token-here"
 #   bash bootstrap.sh
 
 set -euo pipefail
 
 echo "=== NF Workshop AMI Bootstrap ==="
 echo "Started: $(date)"
-
-if [[ -z "${SYNAPSE_AUTH_TOKEN:-}" ]]; then
-  echo "ERROR: SYNAPSE_AUTH_TOKEN is not set."
-  echo "Generate a token at https://www.synapse.org/#!PersonalAccessTokens: and export it before running this script."
-  exit 1
-fi
 
 # ── System packages ──────────────────────────────────────────────────────────
 
@@ -92,38 +81,9 @@ sudo systemctl enable code-server@ubuntu
 echo "--- Installing synapseclient ---"
 pip3 install --break-system-packages synapseclient
 
-# ── Workshop data ─────────────────────────────────────────────────────────────
-
-echo "--- Downloading workshop data from Synapse ---"
-mkdir -p /home/ubuntu/nf-workshop/data
-
-# Authenticate synapseclient using PAT
-python3 - <<PYEOF
-import synapseclient
-syn = synapseclient.Synapse()
-syn.login(authToken="${SYNAPSE_AUTH_TOKEN}")
-
-# Download processed RNA-seq data from syn29529772 (star_salmon outputs)
-# Primary count matrix: salmon.merged.gene_counts.tsv (syn29532377 v2)
-# Sample metadata:      samplesheet.valid.csv          (syn29530880 v3)
-# DESeq2 PCA values:    deseq2.pca.vals.txt            (syn29530871)
-files_to_download = [
-    "syn29532377",  # salmon.merged.gene_counts.tsv  — gene-level counts, all samples
-    "syn29530880",  # samplesheet.valid.csv           — sample metadata
-    "syn29530871",  # deseq2.pca.vals.txt             — pre-computed PCA for reference
-    "syn29530869",  # deseq2.plots.pdf                — pre-computed QC plots for reference
-]
-
-for syn_id in files_to_download:
-    entity = syn.get(syn_id, downloadLocation="/home/ubuntu/nf-workshop/data")
-    print(f"Downloaded: {entity.path}")
-
-print("Data download complete.")
-PYEOF
-
-sudo chown -R ubuntu:ubuntu /home/ubuntu/nf-workshop
-
 # ── Workshop directory setup ─────────────────────────────────────────────────
+
+mkdir -p /home/ubuntu/nf-workshop/data
 
 # Pre-create a workspace R script participants can use as a starting point
 cat > /home/ubuntu/nf-workshop/analysis.R <<'EOF'
@@ -149,6 +109,8 @@ metadata_file <- file.path(data_dir, "samplesheet.valid.csv")
 
 # TODO: load and explore — ask Claude Code for help!
 EOF
+
+sudo chown -R ubuntu:ubuntu /home/ubuntu/nf-workshop
 
 echo ""
 echo "=== Bootstrap complete ==="
