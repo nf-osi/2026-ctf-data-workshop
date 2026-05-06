@@ -79,7 +79,9 @@ sudo systemctl enable code-server@ubuntu
 # ── synapseclient ────────────────────────────────────────────────────────────
 
 echo "--- Installing synapseclient ---"
-pip3 install --break-system-packages synapseclient
+sudo python3 -m venv /opt/synapse-env
+sudo /opt/synapse-env/bin/pip install --quiet synapseclient
+sudo ln -sf /opt/synapse-env/bin/synapse /usr/local/bin/synapse
 
 # ── Workshop directory setup ─────────────────────────────────────────────────
 

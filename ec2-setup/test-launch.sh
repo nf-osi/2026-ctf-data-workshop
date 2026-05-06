@@ -12,7 +12,7 @@ AWS_PROFILE="${AWS_PROFILE:-}"
 # Load credentials from untracked file if present
 CREDS_FILE="$(dirname "${BASH_SOURCE[0]}")/credentials.env"
 [[ -f "$CREDS_FILE" ]] && source "$CREDS_FILE"
-AMI_ID="ami-04b04fed09ac97fcd"
+AMI_ID="ami-0391a51b1900842a3"
 INSTANCE_TYPE="t3.medium"
 SECURITY_GROUP_ID="sg-02d132f299a34e5b1"
 INSTANCE_PROFILE_ARN=""  # optional, for SSM access
@@ -36,7 +36,7 @@ cat > /home/ubuntu/.config/code-server/config.yaml <<CONF
 bind-addr: 0.0.0.0:8080
 auth: password
 password: ${PASSWORD}
-cert: false
+cert: true
 app-name: NF Data Workshop 2026
 CONF
 
@@ -56,6 +56,7 @@ VSSETTINGS
 mkdir -p /home/ubuntu/.claude
 cat > /home/ubuntu/.claude/settings.json <<CLAUDESETTINGS
 {
+  "model": "claude-sonnet-4-6",
   "permissions": {
     "allow": [],
     "deny": []
@@ -70,6 +71,14 @@ cat > /home/ubuntu/.claude.json <<CLAUDEJSON
 CLAUDEJSON
 
 mkdir -p /home/ubuntu/nf-workshop/data
+
+# Ensure synapseclient is available (reinstall into venv if missing)
+if ! command -v synapse &>/dev/null; then
+  python3 -m venv /opt/synapse-env
+  /opt/synapse-env/bin/pip install --quiet synapseclient
+  ln -sf /opt/synapse-env/bin/synapse /usr/local/bin/synapse
+fi
+
 chown -R ubuntu:ubuntu /home/ubuntu/.config /home/ubuntu/.local /home/ubuntu/.claude /home/ubuntu/nf-workshop
 chown ubuntu:ubuntu /home/ubuntu/.claude.json
 
@@ -108,7 +117,7 @@ PUBLIC_IP=$(aws ec2 describe-instances \
   --output text)
 
 echo ""
-echo "  URL:      http://${PUBLIC_IP}:8080/?folder=/home/ubuntu/nf-workshop"
+echo "  URL:      https://${PUBLIC_IP}:8080/?folder=/home/ubuntu/nf-workshop"
 echo "  Password: ${PASSWORD}"
 echo ""
 echo "Note: code-server may take another 30-60 seconds to finish starting up."
