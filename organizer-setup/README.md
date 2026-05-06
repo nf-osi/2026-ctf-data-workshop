@@ -4,7 +4,7 @@ This directory contains scripts to provision, launch, and tear down the EC2 inst
 
 ## Overview
 
-Each participant gets their own EC2 instance (t3.medium) running code-server — VS Code accessible in a web browser. Claude Code, R, and all required packages are pre-installed. Workshop data is pre-staged so participants can start analysis immediately.
+Each participant gets their own EC2 instance (t3.medium) running code-server — VS Code accessible in a web browser. Claude Code, R, and all required packages are pre-installed. 
 
 ```
 Participant browser → http://<public-ip>:8080 → code-server → terminal → Claude Code + R
