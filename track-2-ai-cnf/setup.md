@@ -35,15 +35,29 @@ To open a terminal:
 
 ### Set up Synapse access
 
-In Part 2 of the workshop, you will download data from the NF Data Portal using the Synapse command-line client. You need to authenticate once before this will work.
+In Part 2 of the workshop, you will download data from the NF Data Portal using the Synapse command-line client. You need to create a Personal Access Token (PAT) and configure it once before this will work.
 
-In the terminal, run:
+**Step 1 — Create a Personal Access Token**
+
+1. Go to [synapse.org](https://www.synapse.org) and log in
+2. Click your profile icon (top right) → **Account Settings**
+3. Scroll to **Personal Access Tokens** and click **Create new token**
+4. Give it a name (e.g. `nf-workshop`), leave all permissions at their defaults, and click **Create**
+5. Copy the token — you will only see it once
+
+**Step 2 — Configure the Synapse client**
+
+In the VS Code terminal, run:
 
 ```bash
 synapse config
 ```
 
-Enter your Synapse username and password when prompted. Your credentials will be saved and you will not need to enter them again.
+When prompted:
+- **Synapse username:** enter your Synapse username
+- **Auth token:** paste your Personal Access Token (leave the password field blank)
+
+Your credentials will be saved to `~/.synapseConfig` and you will not need to enter them again.
 
 ### Start Claude Code
 
