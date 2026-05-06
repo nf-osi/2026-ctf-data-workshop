@@ -57,7 +57,7 @@ You have 14 samples: 7 primary cultures (the original cells) and 7 immortalized 
 
 ### Download the data using Claude Code
 
-Open a terminal in VS Code and start Claude Code:
+Open a terminal in VS Code (Menu → Terminal → New Terminal, or press `` Ctrl+` ``) and start Claude Code:
 
 ```bash
 claude
