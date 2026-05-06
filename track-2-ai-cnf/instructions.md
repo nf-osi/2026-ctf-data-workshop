@@ -66,7 +66,8 @@ claude
 Ask Claude Code to download the two files you need:
 
 ```
-Please download the RNA-seq count matrix (syn29532377) and sample metadata (syn29530880) from Synapse into the data/ folder.
+Please download the RNA-seq count matrix (syn29532377) and sample metadata
+(syn29530880) from Synapse into the data/ folder.
 ```
 
 Once it's done you should have:
@@ -86,7 +87,11 @@ Once it's done you should have:
 Now that the data is downloaded, give Claude Code context about what you're working with:
 
 ```
-I'm working with RNA-seq data from a study of NF1 cutaneous neurofibroma Schwann cells. There are 14 samples: 7 primary cultures and 7 immortalized Schwann cell lines, matched by donor. The count matrix is in data/salmon.merged.gene_counts.tsv and the sample metadata is in data/samplesheet.valid.csv. Please load the data, check it looks correct, and give me a brief summary of what we're working with.
+I'm working with RNA-seq data from a study of NF1 cutaneous neurofibroma Schwann
+cells. There are 14 samples: 7 primary cultures and 7 immortalized Schwann cell
+lines, matched by donor. The count matrix is in data/salmon.merged.gene_counts.tsv
+and the sample metadata is in data/samplesheet.valid.csv. Please load the data,
+check it looks correct, and give me a brief summary of what we're working with.
 ```
 
 Claude Code will load the files, tell you about the data structure, and flag anything unusual. Read its response — this is useful context for everything that follows.
@@ -126,7 +131,9 @@ Ask the central biological question of the study.
 **Ask something like:**
 
 ```
-What genes are most significantly changed by immortalization? Run a differential expression analysis comparing immortalized to primary cells, accounting for the paired donor design. Make a volcano plot and save it as a PDF.
+What genes are most significantly changed by immortalization? Run a differential
+expression analysis comparing immortalized to primary cells, accounting for the
+paired donor design. Make a volcano plot and save it as a PDF.
 ```
 
 **Follow-up ideas:**
@@ -135,10 +142,12 @@ What genes are most significantly changed by immortalization? Run a differential
 How many genes are significantly up or down?
 ```
 ```
-What are the top 20 most upregulated genes? Do any of them make biological sense given that we introduced hTERT and mCdk4?
+What are the top 20 most upregulated genes? Do any of them make biological
+sense given that we introduced hTERT and mCdk4?
 ```
 ```
-Where does NF1 itself fall on the volcano plot? Is its expression affected by immortalization?
+Where does NF1 itself fall on the volcano plot? Is its expression affected
+by immortalization?
 ```
 ```
 Label the top 10 most significant genes on the volcano plot.
@@ -155,19 +164,23 @@ This is where it gets interesting. Instead of just listing differentially expres
 **Ask something like:**
 
 ```
-Use Enrichr to run gene set enrichment on the genes upregulated in immortalized cells. Query the MSigDB Hallmarks, KEGG 2021, and DisGeNET databases. What pathways and diseases are most enriched?
+Use Enrichr to run gene set enrichment on the genes upregulated in immortalized
+cells. Query the MSigDB Hallmarks, KEGG 2021, and DisGeNET databases. What
+pathways and diseases are most enriched?
 ```
 
 Then flip it:
 
 ```
-Do the same for genes upregulated in primary cells — what are we losing when we immortalize? Are Schwann cell identity programs being downgraded?
+Do the same for genes upregulated in primary cells — what are we losing when
+we immortalize? Are Schwann cell identity programs being downgraded?
 ```
 
 **Follow-up ideas:**
 
 ```
-The DisGeNET results are interesting — are any NF1 or neurofibroma-related terms enriched? What about other cancers?
+The DisGeNET results are interesting — are any NF1 or neurofibroma-related
+terms enriched? What about other cancers?
 ```
 ```
 Run enrichment on just the top 100 most upregulated genes. Does the picture change?
@@ -176,7 +189,8 @@ Run enrichment on just the top 100 most upregulated genes. Does the picture chan
 Visualize the top enriched terms from each condition as a bar chart and save it.
 ```
 ```
-Cross-reference the upregulated genes against a list of known NF1-pathway genes. How much overlap is there?
+Cross-reference the upregulated genes against a list of known NF1-pathway
+genes. How much overlap is there?
 ```
 
 **What to look for:** Immortalized cells should strongly enrich for cell cycle and proliferation pathways — expected because mCdk4 drives cell division. The primary cells (genes lost during immortalization) may show enrichment for Schwann cell differentiation and myelination terms.
@@ -192,25 +206,32 @@ Some directions that are worth exploring:
 **Schwann cell identity:**
 
 ```
-Make a plot showing the expression of key Schwann cell markers (S100B, MPZ, PMP22, SOX10) across all 14 samples. Are the immortalized cells still recognizably Schwann cells at the transcriptome level?
+Make a plot showing the expression of key Schwann cell markers (S100B, MPZ,
+PMP22, SOX10) across all 14 samples. Are the immortalized cells still
+recognizably Schwann cells at the transcriptome level?
 ```
 
 **The NF1 pathway:**
 
 ```
-Plot the expression of NF1 and key RAS/MAPK pathway genes (KRAS, HRAS, BRAF, MAP2K1, MAPK1, MAPK3) across all samples. Does anything stand out?
+Plot the expression of NF1 and key RAS/MAPK pathway genes (KRAS, HRAS, BRAF,
+MAP2K1, MAPK1, MAPK3) across all samples. Does anything stand out?
 ```
 
 **Drug targets:**
 
 ```
-Of the genes most upregulated in immortalized cells, which ones are known drug targets? Are any of them targeted by drugs that are already in clinical use or in trials for NF1?
+Of the genes most upregulated in immortalized cells, which ones are known drug
+targets? Are any of them targeted by drugs already in clinical use or in trials
+for NF1?
 ```
 
 **Transcription factors:**
 
 ```
-Use Enrichr's ENCODE_and_ChEA_Consensus_TFs_from_ChIP-X database to find transcription factors whose targets are enriched in the upregulated gene set. Which transcription factors might be driving the immortalization signature?
+Use Enrichr's ENCODE_and_ChEA_Consensus_TFs_from_ChIP-X database to find
+transcription factors whose targets are enriched in the upregulated gene set.
+Which transcription factors might be driving the immortalization signature?
 ```
 
 ---
@@ -222,13 +243,17 @@ Bring the analysis together.
 **Ask something like:**
 
 ```
-Generate a single summary figure combining the PCA, volcano plot, and a bar chart of the top 10 Enrichr Hallmark terms for each condition. Arrange them in a grid and save as summary_figure.pdf.
+Generate a single summary figure combining the PCA, volcano plot, and a bar
+chart of the top 10 Enrichr Hallmark terms for each condition. Arrange them
+in a grid and save as summary_figure.pdf.
 ```
 
 Then:
 
 ```
-Write a 3-sentence plain language summary of what this RNA-seq data tells us about these immortalized cNF Schwann cell lines — suitable for someone who doesn't know bioinformatics.
+Write a 3-sentence plain language summary of what this RNA-seq data tells us
+about these immortalized cNF Schwann cell lines — suitable for someone who
+doesn't know bioinformatics.
 ```
 
 ---
@@ -244,7 +269,9 @@ What are the most highly expressed genes in primary cNF cells overall? Are any o
 Is there any evidence of epithelial-to-mesenchymal transition in the immortalized cells?
 ```
 ```
-Compare the expression pattern of these samples to what you know about NF1-related malignant peripheral nerve sheath tumors (MPNSTs). Do the immortalized cells look more like cNF or more like MPNST?
+Compare the expression pattern of these samples to what you know about
+NF1-related malignant peripheral nerve sheath tumors (MPNSTs). Do the
+immortalized cells look more like cNF or more like MPNST?
 ```
 ```
 Show me a heatmap of the top 50 differentially expressed genes across all 14 samples.
@@ -252,6 +279,8 @@ Show me a heatmap of the top 50 differentially expressed genes across all 14 sam
 ```
 Can you write a methods section paragraph describing the analysis we just did?
 ```
+
+
 
 ---
 

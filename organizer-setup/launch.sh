@@ -78,7 +78,13 @@ CLAUDESETTINGS
 cat > /home/ubuntu/.claude.json <<CLAUDEJSON
 {
   "hasCompletedOnboarding": true,
-  "oauthAccount": null
+  "oauthAccount": null,
+  "customApiKey": "${ANTHROPIC_API_KEY}",
+  "projects": {
+    "/home/ubuntu/nf-workshop": {
+      "hasTrustedProjectFolder": true
+    }
+  }
 }
 CLAUDEJSON
 
