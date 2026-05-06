@@ -1,2 +1,3 @@
-ec2-setup/credentials.env
+organizer-setup/credentials.env
 credentials.csv
+.claude/

@@ -4,7 +4,7 @@
 # How to use:
 #   1. Launch a fresh Ubuntu 24.04 LTS EC2 instance (t3.medium or larger)
 #   2. SSH in and run this script as the ubuntu user:
-#        curl -fsSL https://raw.githubusercontent.com/<your-org>/2026-ctf-data-workshop/main/ec2-setup/bootstrap.sh | bash
+#        curl -fsSL https://raw.githubusercontent.com/<your-org>/2026-ctf-data-workshop/main/organizer-setup/bootstrap.sh | bash
 #      OR copy and run directly.
 #   3. When it finishes, create an AMI from the instance in the AWS console.
 #   4. Terminate this temporary instance.
