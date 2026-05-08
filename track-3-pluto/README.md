@@ -1,7 +1,5 @@
 # Track 3: Analyzing NF Portal Datasets on Pluto
 
-**Organized by the [Children's Tumor Foundation](https://www.ctf.org), [Sage Bionetworks](https://sagebionetworks.org), and [Pluto](https://pluto.bio)**
-
 ---
 
 ## Overview
