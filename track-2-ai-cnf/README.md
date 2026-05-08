@@ -1,7 +1,5 @@
 # Track 2: Using Claude Code to Explore cNF RNA-seq Data
 
-**Organized by the [Children's Tumor Foundation](https://www.ctf.org) and [Sage Bionetworks](https://sagebionetworks.org)**
-
 ---
 
 ## Overview
