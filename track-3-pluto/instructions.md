@@ -3,59 +3,117 @@
 ---
 
 ## Step 1: Accept your Pluto invitation
-If you have requested Pluto access prior to the workshop, you will receive a Pluto invitation email. Clicking accept invitation will take you to a page to sign up for your temporary 30-day Pluto account. 
-Enter your email and a secure password. Choose the sign up option and enter your full name and email to create your account. Finally, accept the invitation to join the CTF Pluto workspace. 
 
-Congratulations! You are now ready to analyze data in Pluto.
+If you have not yet already, [submit this form](https://docs.google.com/forms/d/e/1FAIpQLScmz8wKy6MYsU4xyy4L1n-2qphVqhhZJ_zLcEGWflOKR4LIEA/viewform?usp=dialog) to be invited to the CTF Pluto workspace. 
 
-## Step 2: Navigate to the Published data sets
-You are now in the Pluto workspace. The workspace contains all of your projects, experiments (datasets), and analyses. You can also access CTF-curated published data sets from the workspace, including the sample metadata, counts data, and existing analyses. 
+Be on the lookout for an email from Pluto Bio accept your invitation. Clicking to accept the invitation will take you to a page to sign up for your temporary 30-day Pluto account. 
 
-Multiple experiments can be organized into project folders and shared at the experiment level or the project level. Analyses are associated with individual experiments or, in the case of a multi-omics experiment, a group of linked experiments. 
+<img src="images/step1_invitation_email.png" alt="step1_invitation_email" width="350">
 
-If you want to find CTF's curated project full of NF datasets, go to the project entitled "CTF NF Target Discovery Hub - External" from the Workspace page or the analysis tab in the left-hand menu of the page. To find the dataset for today's data workshop, go to the left-hand menu and select Research. 
+Choose the sign up option and enter your full name and email to create your account. Finally, accept the invitation to join the CTF Pluto workspace. 
 
-The first option is Published data sets. Select this option to browse the public experiments from Synapse, GEO, and other public data repositories. 
+<img src="images/step1_create_account.png" alt="step1_create_account" width="350"> &nbsp;&nbsp;&nbsp; <img src="images/step1_accept_org_invite.png" alt="step1_accept_org_invite" width="350">
+
+Congratulations, you are now ready to analyze data in Pluto! 
+
+## Step 2: Navigate to the published data sets  
+
+Your user account will be added to the CTF external project shortly. In the meantime, you can explore publicly-available experiments and datasets. 
+
+Use the **Research > Published data sets** tab in the left-hand menu to browse public datasets or use this [link](https://app.pluto.bio/explore?sort_by=-updated_at&page=0).
+
+<img src="images/step2_research_tab.png" alt="step2_research_tab" width="350">
+
+These datasets come from many sources, such as Synapse, GEO, and other public data repositories. You can filter dataset attributes and use the search bar to find specific datasets by keyword. 
+
+Let's say you have a specific research question in mind related to microglia in Neurofibromatosis (NF). Use the searchbar to search `Neurofibromatosis microglia`. You should find multiple datasets related to this topic that are ready for exploration. 
+
+<img src="images/step2_search_results.png" alt="step2_search_results" width="700">
+
+Click on one of these experiments to learn more about the data they contain. 
+
+Then, you can navigate back to the published data sets page to find other datasets of interest or continue on to the next step. 
 
 ## Step 3: Find a specific NF dataset
-In this workshop, we will be using a specific public dataset from the NF Data Portal. Go to the search bar for the public data sets page. Type "synodos" and hit enter to start filtering datasets for this keyword.
-Choose the resulting dataset entitled "Human NF1 Low Grade Glioma RNAseq Data" to open the experiment. 
+
+In this workshop, we will be exploring a specific public dataset from the NF Data Portal. By now, you should have access to the CTF external project. See the projects you have access to using the **Analysis > Projects** tab in the left-hand menu or by using this [link](https://app.pluto.bio/projects). 
+
+<img src="images/step3_projects_tab.png" alt="step3_projects_tab" width="350">
+
+Click on the project entitled "CTF NF Target Discovery Hub - External". If you do not see this project, please contact one of the workshop organizers. 
+
+You will see a number of experiments to analyze within this project. For this workshop, click on the dataset entitled "Human NF1 Low Grade Glioma RNAseq Data" or use this [link](https://app.pluto.bio/experiments/PLX312906). 
+
+The main experiment page can be used to view the experiment notebook, sample metadata, counts data, and pipeline QC results. View the current analysis of this experiment using the **Analysis > Grid** tab at the top of the page or using this [link](https://app.pluto.bio/experiments/PLX312906/analysis). 
+
+<img src="images/step3_analysis_tab.png" alt="step3_analysis_tab" width="350">
+
+Existing analyses include a differential expression comparison and a principal component analysis (PCA). We can create our own analyses by continuing to the next step! 
 
 ## Step 4: Run a differential expression analysis 
-This experiment has already been processed through an nf-core pipeline, so the raw counts are available. You can view the counts data along with the sample metadata table and the pipeline QC results in the area below the experiment notebook. 
-In order to start a no-code analysis on this dataset, go to the Analysis tab (next to Overview) and select the Grid option to open the analysis grid. Existing analysis are already available to preview. 
 
-Select the exploratory analysis button to open the analysis catalog. Here, you will see all of the no-code analysis options that are available for this experiment. You can search for a particular analysis to filter by category.
-Select the differential expression analysis and hit the create analysis button. 
+Click the **Exploratory Analysis** button to open the analysis catalog. Here, you will see all of the no-code analysis options that are available for this experiment. You can search for a particular analysis to filter by category.
 
-You will now begin customizing your own analysis. Here, you will select a variable to group your samples by for differential expression analysis. Follow along with the workshop by selecting the "Nf1 Genotype" variable. 
-In the dropdown menu for experimental group, select the label "-/-" indicating homozygous deletion of *NF1*. In the In the dropdown menu for control group, select the label "+/-" indicating heterozygous deletion of *NF1*.
-Click start analysis to begin running your differential expression analysis. 
+<img src="images/step4_analysis_catalog.png" alt="step4_analysis_catalog" width="700">
 
-Once the analysis appears, you can customize the plot filters, colors, and highlighted features by selecting the plot settings or pencil icon to the left of the plot. The significantly increased genes in the 
--/- (homozygous) group relative to the +/- (heterozygous) group have significantly positive log2 fold changes and significantly high negative log2 adjusted p-values. On the other hand, the significantly decreased
-genes in the homozygous group relative to the heterozygous group have significantly *negative* log2 fold changes, and are on the left side of the x-axis. 
+Select the **Differential expression** analysis. The page at the right describes this particular analysis in detail. Click the **create analysis** button. 
 
-You can hold down click and circle a region of the plot
-to lasso a group of genes. That group of genes will then be highlighted and labeled for quick reference, and named in the plot settings under "Labeled features" for reference. 
+You will now begin customizing your own analysis. Here, you will select a variable to group your samples by for differential expression analysis. To follow along with the workshop, select the "Nf1 Genotype" variable. 
 
-Check the results and methods tabs under the plot to find the analyses data table and methods descriptions, respectively. 
+In the dropdown menu for experimental group, select the label "-/-" indicating homozygous loss of the gene, NF1. In the dropdown menu for control group, select the label "+/-" indicating heterozygous loss of NF1. Click **Run analysis** to begin running your differential expression analysis. 
 
-## Step 5 (optional): Run a principal component analysis (PCA)
-Navigate back to the analysis catalog by exiting the differential expression analysis. Select principal components (PCA) and create analysis. Start the PCA by clicking run analysis. Once the PCA is completed, open the plot settings and 
-scroll down to the Points sections where you will see all of the available variables to group these samples by in the low dimensional space created by the PCA. Select "Tumortype" and save changes to update the group coloring on the plot.
+<img src="images/step4_deg_params.png" alt="step4_deg_params" width="250"> 
 
-Once the colors update, check how the groups are distributed. Are they all distinct clusters or are there overlaps between multiple groups on the PCA? 
+Once the analysis appears, you can customize the plot filters, colors, and highlighted features by clicking on the **Plot** tab. 
 
-Overlapping groups may indicate that the gene expression between those groups is not highly heterogenous. Depending on the variables selected, PCA plots can also revela batch effects or outlying samples.
+In this volcano plot, the significantly increased genes in the -/- (homozygous) group relative to the +/- (heterozygous) group have a positive log2 fold change and significant adjusted p-values. On the other hand, the significantly decreased genes in the homozygous group relative to the heterozygous group have *negative* log2 fold changes, and are on the left side of the x-axis. 
 
-## Conclusion
-Thank you for joining the data workshop for analyzing NF Portal Datasets on Pluto! 
+Click a circle around a few points on the plot to lasso a group of genes. That group of genes will then be highlighted and labeled for quick reference. The are named in the plot settings under "Labeled features" for reference. 
 
-Today, you have learned how to search for NF Data Portal datasets in Pluto projects or public data sets and how to run no-code analyses to generate custom data visualizations.
-We have also walked through how you can explore plots more deeply through additional plot settings, results, and methods. 
+<img src="images/step4_volcano.png" alt="step4_volcano" width="700">
+
+In Pluto, all analyses have results and methods tabs under the plot: 
+
+<img src="images/step4_analysis_methods.png" alt="step4_analysis_methods" width="600"> 
+
+You can also export plots which will lead to a customization page, allowing additional edits before publication! 
+
+**This is a particularly import step because your current trial period means that all analyses will be removed after 24 hours.**
+
+<img src="images/step4_export.png" alt="step4_export" width="250"> 
+
+## Step 5: Run pathway analysis 
+
+Now that we made a differential expression comparison in the previous step, we have dozens of significantly different genes. These can be difficult to hold in your head all at once while trying to make sense of what they biologically mean collectively. 
+
+We will run pathway analysis to get a better sense of how the biology differs between homozygous and heterozygous NF1 loss. 
+
+Click the **Exploratory Analysis** button to return to the analysis catalog. Select **Gene set enrichment** and **create analysis**. Choose your newly created comparison, "-/- vs +/-", and select "Hallmarks" as the Gene set collection. Click **Run analysis** to start GSEA. 
+
+<img src="images/step5_gsea_params.png" alt="step5_gsea_params" width="250"> 
+
+Click on the **Plot** tab when the analysis finishes. You'll see the most significant gene set, interferon gamma response, as the displayed enrichment plot. The enrichment plot shows where genes in this pathway fall in your ranked fold-change from the -/- vs +/- comparison. The majority of these genes fall into the positive fold change category, meaning that -/- samples have a stronger signal for interferon gamma response. 
+
+<img src="images/step5_enrichment_plot.png" alt="step5_enrichment_plot" width="700"> 
+
+You can use the **Gene set** dropdown to view other gene sets or select the **Score bar plot** option to view multiple gene sets at once. 
+
+When the adjusted p-value cutoff is raised to 0.01, you'll notice multiple gene sets related to immune response, suggesting higher inflammation in the -/- samples. This finding is consistent with literature showing loss of NF1 enhances inflammation (PMID: 28001089).  
+
+<img src="images/step5_scorebarplot.png" alt="step5_scorebarplot" width="700"> 
+
+
+## Step 6 (optional): Run additional analysis 
+
+Time permitting, feel free to run additional analyses or explore other NF and public datasets. 
+
+## Wrap up 
+
+Thank you for joining this data workshop to analyze NF Portal Datasets on Pluto! 
+
+Today, you have learned how to search for NF Data Portal datasets in Pluto projects or public data sets and how to run no-code analyses to generate custom data visualizations. We have also walked through how you can explore plots more deeply through additional plot settings, results, and methods. 
 
 To continue working in Pluto, [please contact Kara Quaid for extended access](https://www.ctf.org/pluto-web-access/). If you have any questions about
-Pluto, don't hesitate to reach out the Andrew Goodspeed (andrew@pluto.bio), Mea Casey (mea@pluto.bio), or the Pluto Support team via support@pluto.bio. 
+Pluto, don't hesitate to reach out the Andrew Goodspeed (andrew@pluto.bio), Mea Casey (mea@pluto.bio), or the Pluto Support team (support@pluto.bio). 
 
 
