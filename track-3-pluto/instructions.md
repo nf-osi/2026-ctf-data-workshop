@@ -1,4 +1,4 @@
-# Step-by-step instructions: Analyzing NF Portal Datasets on Pluto
+# Step-by-step instructions: Analyzing NF Portal Datasets in Pluto
 
 ---
 
@@ -55,7 +55,7 @@ Thank you for joining the data workshop for analyzing NF Portal Datasets on Plut
 Today, you have learned how to search for NF Data Portal datasets in Pluto projects or public data sets and how to run no-code analyses to generate custom data visualizations.
 We have also walked through how you can explore plots more deeply through additional plot settings, results, and methods. 
 
-To continue working in Pluto, please contact Kara Quaid for extended access. If you have any questions about
+To continue working in Pluto, [please contact Kara Quaid for extended access](https://www.ctf.org/pluto-web-access/). If you have any questions about
 Pluto, don't hesitate to reach out the Andrew Goodspeed (andrew@pluto.bio), Mea Casey (mea@pluto.bio), or the Pluto Support team via support@pluto.bio. 
 
 
