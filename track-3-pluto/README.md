@@ -18,7 +18,6 @@ In this track, you will use [Pluto](https://pluto.bio) — a cloud-based bioinfo
 
 - A laptop with a modern web browser
 - [Submit form](https://docs.google.com/forms/d/e/1FAIpQLScmz8wKy6MYsU4xyy4L1n-2qphVqhhZJ_zLcEGWflOKR4LIEA/viewform?usp=dialog) to obtain Pluto invitation link. No advance sign-up needed. 
-- A free [Synapse account](https://www.synapse.org/register) — **please register before the workshop** (see [SETUP.md](../SETUP.md))
 
 ## Learning Objectives
 

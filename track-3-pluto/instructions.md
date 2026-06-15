@@ -6,7 +6,7 @@
 
 If you have not yet already, [submit this form](https://docs.google.com/forms/d/e/1FAIpQLScmz8wKy6MYsU4xyy4L1n-2qphVqhhZJ_zLcEGWflOKR4LIEA/viewform?usp=dialog) to be invited to the CTF Pluto workspace. 
 
-Be on the lookout for an email from Pluto Bio accept your invitation. Clicking to accept the invitation will take you to a page to sign up for your temporary 30-day Pluto account. 
+Be on the lookout for an email from Pluto Bio to accept your invitation. Clicking to accept the invitation will take you to a page to sign up for your temporary 30-day Pluto account. 
 
 <p align="center">
 <img src="images/step1_invitation_email.png" alt="step1_invitation_email" width="400">
@@ -30,15 +30,19 @@ Use the **Research > Published data sets** tab in the left-hand menu to browse p
 <img src="images/step2_research_tab.png" alt="step2_research_tab" width="400">
 </p>
 
-These datasets come from many sources, such as Synapse, GEO, and other public data repositories. You can filter dataset attributes and use the search bar to find specific datasets by keyword. 
+These datasets come from many sources, such as Synapse, GEO, and other public data repositories. You can filter dataset attributes and use the search bar to find specific datasets by keyword. You can see that there are greater than 14,000 datasets now. To demonstrate the dataset attributes, try filtering to just include mouse and RNA-seq experiments. How many datasets remain?  
 
-Let's say you have a specific research question in mind related to microglia in Neurofibromatosis (NF). Use the searchbar to search `Neurofibromatosis microglia`. You should find multiple datasets related to this topic that are ready for exploration. 
+Now, let's say you have a specific research question in mind related to microglia in Neurofibromatosis (NF). Use the searchbar to search `Neurofibromatosis microglia`. You should find multiple datasets related to this topic that are ready for exploration. 
 
 <p align="center">
 <img src="images/step2_search_results.png" alt="step2_search_results" width="800">
 </p>
 
-Click on one of these experiments to learn more about the data they contain. 
+Click on one of these experiments to learn more about the data they contain. Have a glance at the Notebook section to learn more about the dataset and experimental design. These are examples of public data experiments, which typically already contain some analyses and visualizations. See which analyses were already performed on this dataset by clicking **Analysis > Grid** tab at the top of the page. 
+
+<p align="center">
+<img src="images/step2_analysis_grid.png" alt="step2_analysis_grid" width="150">
+</p>
 
 Then, you can navigate back to the published data sets page to find other datasets of interest or continue on to the next step. 
 
@@ -50,7 +54,7 @@ In this workshop, we will be exploring a specific public dataset from the NF Dat
 <img src="images/step3_projects_tab.png" alt="step3_projects_tab" width="400">
 </p>
 
-Click on the project entitled "CTF NF Target Discovery Hub - External". If you do not see this project, please contact one of the workshop organizers. 
+Click on the project entitled "CTF NF Target Discovery Hub - External". If you **do not** see this project, it means you have not yet been added to this CTF project. Please contact one of the workshop organizers to let them know. 
 
 You will see a number of experiments to analyze within this project. For this workshop, click on the dataset entitled "Human NF1 Low Grade Glioma RNAseq Data" or use this [link](https://app.pluto.bio/experiments/PLX312906). 
 

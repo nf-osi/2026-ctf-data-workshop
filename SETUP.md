@@ -12,9 +12,9 @@ No software installation is required for any track.
 
 ---
 
-## Tracks 2 & 3: Synapse Account
+## Track 2: Synapse Account
 
-Tracks 2 and 3 use data hosted on the [NF Data Portal](https://nf.synapse.org), which is powered by Sage Bionetworks' Synapse platform. You will need a free Synapse account to access these datasets.
+Track 2 uses data hosted on the [NF Data Portal](https://nf.synapse.org), which is powered by Sage Bionetworks' Synapse platform. You will need a free Synapse account to access these datasets.
 
 ### Create a Synapse Account
 
@@ -33,7 +33,7 @@ Some datasets may require you to certify your Synapse account or request specifi
 
 ## Track 3: Pluto Account
 
-Track 3 uses [Pluto](https://pluto.bio) for interactive analysis. Workshop participants will be provided with access credentials or a workspace link on the day of the event. No advance setup is needed beyond having a Synapse account.
+Track 3 uses [Pluto](https://pluto.bio) for interactive analysis. Workshop participants will be provided with access credentials or a workspace link on the day of the event. No advance setup is needed.
 
 ---
 
