@@ -29,7 +29,7 @@ Apply AI-assisted tools to analyze cutaneous neurofibroma (cNF) datasets. Explor
 ---
 
 ### Track 3 — Analyzing NF Portal Datasets in Pluto
-> **Best for:** Participants interested in interactive bioinformatics analysis. A Synapse account is required.
+> **Best for:** Participants interested in interactive, no-code bioinformatics analysis. 
 
 Use the Pluto platform to perform and visualize bioinformatic analyses on datasets from the NF Data Portal — no local software installation needed.
 
@@ -40,7 +40,7 @@ Use the Pluto platform to perform and visualize bioinformatic analyses on datase
 ## Before You Arrive
 
 - **All tracks:** Bring a laptop with a modern web browser (Chrome or Firefox recommended).
-- **Tracks 2 & 3:** You will need a free [Synapse account](https://www.synapse.org/register). Please register in advance!
+- **Tracks 2:** You will need a free [Synapse account](https://www.synapse.org/register). Please register in advance!
 
 ## Questions?
 
