@@ -28,7 +28,7 @@ Apply AI-assisted tools to analyze cutaneous neurofibroma (cNF) datasets. Explor
 
 ---
 
-### Track 3 — Analyzing NF Portal Datasets on Pluto
+### Track 3 — Analyzing NF Portal Datasets in Pluto
 > **Best for:** Participants interested in interactive bioinformatics analysis. A Synapse account is required.
 
 Use the Pluto platform to perform and visualize bioinformatic analyses on datasets from the NF Data Portal — no local software installation needed.

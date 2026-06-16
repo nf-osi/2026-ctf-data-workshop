@@ -1,4 +1,4 @@
-# Track 3: Analyzing NF Portal Datasets on Pluto
+# Track 3: Analyzing NF Portal Datasets in Pluto
 
 ---
 
@@ -10,24 +10,22 @@ In this track, you will use [Pluto](https://pluto.bio) — a cloud-based bioinfo
 
 <!-- TODO: Flesh out with specific datasets and analysis types once the Pluto workspace is configured -->
 
-- Access NF Portal datasets via Synapse
-- Import data into a Pluto workspace
-- Run bioinformatic analyses using Pluto's guided interface
+- Navigate published NF datasets
+- Run bioinformatics analyses using Pluto's guided interface
 - Visualize and interpret results
 
 ## What You Will Need
 
 - A laptop with a modern web browser
-- A free [Synapse account](https://www.synapse.org/register) — **please register before the workshop** (see [SETUP.md](../SETUP.md))
-- Pluto workspace access — a link will be provided on the day of the workshop (no advance sign-up needed)
+- [Submit form](https://docs.google.com/forms/d/e/1FAIpQLScmz8wKy6MYsU4xyy4L1n-2qphVqhhZJ_zLcEGWflOKR4LIEA/viewform?usp=dialog) to obtain Pluto invitation link. No advance sign-up needed. 
 
 ## Learning Objectives
 
 By the end of this session you will be able to:
 
 1. Navigate the NF Data Portal and identify relevant datasets
-2. Import data into Pluto and understand the workspace structure
-3. Run and interpret at least one bioinformatic analysis
+2. Understand the workspace structure
+3. Run and interpret at least one bioinformatics analysis
 4. Export a publication-ready figure
 
 ---
