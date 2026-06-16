@@ -6,7 +6,7 @@
 
 If you have not yet already, [submit this form](https://docs.google.com/forms/d/e/1FAIpQLScmz8wKy6MYsU4xyy4L1n-2qphVqhhZJ_zLcEGWflOKR4LIEA/viewform?usp=dialog) to be invited to the CTF Pluto workspace. 
 
-Be on the lookout for an email from Pluto Bio to accept your invitation. Clicking to accept the invitation will take you to a page to sign up for your temporary 30-day Pluto account. 
+Be on the lookout for an email from Pluto Bio to accept your invitation. Clicking to accept the invitation will take you to a page to sign up for your Pluto account with CTF organization member access. 
 
 <p align="center">
 <img src="images/step1_invitation_email.png" alt="step1_invitation_email" width="400">
@@ -144,7 +144,6 @@ Thank you for joining this data workshop to analyze NF Portal Datasets on Pluto!
 
 Today, you have learned how to search for NF Data Portal datasets in Pluto projects or public data sets and how to run no-code analyses to generate custom data visualizations. We have also walked through how you can explore plots more deeply through additional plot settings, results, and methods. 
 
-To continue working in Pluto, [please contact Kara Quaid for extended access](https://www.ctf.org/pluto-web-access/). If you have any questions about
-Pluto, don't hesitate to reach out the Andrew Goodspeed (andrew@pluto.bio), Mea Casey (mea@pluto.bio), or the Pluto Support team (support@pluto.bio). 
+If you have any questions about Pluto, don't hesitate to reach out the Andrew Goodspeed (andrew@pluto.bio), Mea Casey (mea@pluto.bio), or the Pluto Support team (support@pluto.bio). 
 
 
