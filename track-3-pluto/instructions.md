@@ -102,7 +102,7 @@ In Pluto, all analyses have results and methods tabs under the plot:
 
 You can also export plots which will lead to a customization page, allowing additional edits before publication! 
 
-**This is a particularly import step because your current trial period means that all analyses will be removed after 24 hours.**
+**This is a particularly important step because your current trial period means that all analyses will be removed after 24 hours.**
 
 <p align="center">
 <img src="images/step4_export.png" alt="step4_export" width="300"> 
