@@ -1,3 +1,4 @@
 organizer-setup/credentials.env
 credentials.csv
 .claude/
+.DS_Store

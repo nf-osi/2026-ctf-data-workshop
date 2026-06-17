@@ -44,12 +44,12 @@
 </style>
 
 <div class="hunt-container">
-  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">NF Data Portal scavenger hunt — 7 tasks to complete</h2>
+  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">NF Data Portal scavenger hunt — 5 tasks to complete</h2>
   <div class="header">
     <h1>NF Data Portal — Scavenger Hunt</h1>
-    <p>Explore the portal by completing each task. Click a card to see hints and record your answer.</p>
+    <p>Explore the portal at <a href="https://www.nf.synapse.org" target="_blank">nf.synapse.org</a> by completing each task. Click a card to see hints and record your answer.</p>
     <div class="progress-bar-wrap"><div class="progress-bar" id="bar" style="width:0%"></div></div>
-    <p class="progress-label" id="prog-label">0 of 7 completed</p>
+    <p class="progress-label" id="prog-label">0 of 5 completed</p>
   </div>
 
   <div class="task-card" id="t1">
@@ -57,13 +57,13 @@
       <div class="task-check"><i class="ti ti-check"></i></div>
       <div class="task-body">
         <p class="task-num">Task 1</p>
-        <p class="task-title">Find the Cutaneous Neurofibroma Data Resource</p>
-        <p class="task-desc">Locate the dataset and submit an access request using the provided justification statement.</p>
+        <p class="task-title">Find the study named "Cutaneous Neurofibroma Data Resource"</p>
+        <p class="task-desc">Locate the study and submit an access request on the Wiki page.</p>
         <span class="task-tag tag-access">Data access</span>
         <div class="task-hint">
           <strong style="font-size:13px; color: var(--color-text-primary);">Access request statement to use:</strong><br>
           <em>"I aim to identify potential biomarkers of cutaneous neurofibromas using this dataset."</em><br><br>
-          Search or browse the portal for datasets tagged with <strong>cutaneous neurofibroma</strong>. Locate the dataset page and use the Request Access button to submit your justification.
+          Switch to the <strong>Studies</strong> tab and search for "Cutaneous Neurofibroma Data Resource". View the study on Synapse and use the Request Access button to submit your justification.
         </div>
         <div class="answer-area">
           <p class="answer-label">Your answer</p>
@@ -79,15 +79,15 @@
       <div class="task-check"><i class="ti ti-check"></i></div>
       <div class="task-body">
         <p class="task-num">Task 2</p>
-        <p class="task-title">Find a pNF drug screening assay dataset</p>
-        <p class="task-desc">Locate a dataset containing drug screening assay results for plexiform neurofibromas.</p>
-        <span class="task-tag tag-data">Dataset discovery</span>
+        <p class="task-title">Identify a multi-tumor-type study</p>
+        <p class="task-desc">Find a study that includes data from more than one tumor type.</p>
+        <span class="task-tag tag-explore">Explore</span>
         <div class="task-hint">
-          Try filtering or searching for <strong>plexiform neurofibroma</strong> or <strong>pNF</strong> combined with <strong>drug screening</strong> or <strong>assay</strong>. Look for study types that include in vitro or pharmacological data.
+          Switch to the <strong>Studies</strong> tab and select the <strong>Manifestation</strong> search filter. Look at study descriptions or metadata for studies that list multiple tumor types — for example, a study collecting both pNF and MPNST samples.
         </div>
         <div class="answer-area">
-          <p class="answer-label">Your answer</p>
-          <input class="answer-input" type="text" placeholder="Dataset name, Synapse ID, or URL…" onclick="event.stopPropagation()" />
+          <p class="answer-label">Study name, Synapse ID, or URL</p>
+          <input class="answer-input" type="text" placeholder="e.g. syn12345678 or https://…" onclick="event.stopPropagation()" />
         </div>
       </div>
       <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
@@ -99,15 +99,15 @@
       <div class="task-check"><i class="ti ti-check"></i></div>
       <div class="task-body">
         <p class="task-num">Task 3</p>
-        <p class="task-title">Count RNA-seq studies for NF1</p>
-        <p class="task-desc">How many RNA-seq studies are available for NF1? Break down your count by manifestation type.</p>
+        <p class="task-title">Find a pNF drug screening assay dataset</p>
+        <p class="task-desc">Locate a dataset containing drug screening assay results for plexiform neurofibromas.</p>
         <span class="task-tag tag-data">Dataset discovery</span>
         <div class="task-hint">
-          Filter studies by <strong>assay type = RNA-seq</strong> and <strong>condition = NF1</strong>. Note the total count, then apply sub-filters for manifestation (e.g., cutaneous NF, pNF, MPNST) to see how studies are distributed.
+          Switch to the <strong>Datasets</strong> tab and select <strong>Manifestation</strong> and <strong>Data Type</strong> search filters. Try filtering or searching for <strong>plexiform neurofibroma</strong> combined with <strong>drug screen</strong>.
         </div>
         <div class="answer-area">
-          <p class="answer-label">Total count &amp; breakdown by manifestation</p>
-          <textarea class="answer-input" rows="3" placeholder="e.g. Total: 12 — pNF: 5, MPNST: 4, cutaneous NF: 3…" onclick="event.stopPropagation()"></textarea>
+          <p class="answer-label">Your answer</p>
+          <input class="answer-input" type="text" placeholder="Dataset name, Synapse ID, or URL…" onclick="event.stopPropagation()" />
         </div>
       </div>
       <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
@@ -119,15 +119,15 @@
       <div class="task-check"><i class="ti ti-check"></i></div>
       <div class="task-body">
         <p class="task-num">Task 4</p>
-        <p class="task-title">Find NF studies available on cBioPortal</p>
-        <p class="task-desc">Use the Explore tab to identify which NF studies can be visualized on cBioPortal.</p>
-        <span class="task-tag tag-viz">Visualization</span>
+        <p class="task-title">Identify an animal model for cognition</p>
+        <p class="task-desc">Find a tool entry for an animal model related to NF1-associated cognitive features.</p>
+        <span class="task-tag tag-model">Animal model</span>
         <div class="task-hint">
-          Navigate to the <strong>Explore</strong> tab in the NF Data Portal. Look for studies that display a cBioPortal badge or link. These studies have been made available for interactive genomic visualization on the cBioPortal platform.
+          Switch to the <strong>Tools</strong> tab and select the <strong>Resource Type</strong>, <strong>Animal Model of Manifestation</strong>, and <strong>Animal Model of Genetic Disorder</strong> filters. Filter for terms like <strong>Animal Model</strong>, <strong>Cognition</strong>, and <strong>Neurofibromatosis type 1</strong>.
         </div>
         <div class="answer-area">
-          <p class="answer-label">Study names or URLs</p>
-          <textarea class="answer-input" rows="3" placeholder="List study names or paste cBioPortal URLs…" onclick="event.stopPropagation()"></textarea>
+          <p class="answer-label">Model name, Synapse ID, or URL</p>
+          <input class="answer-input" type="text" placeholder="e.g. syn12345678 or https://…" onclick="event.stopPropagation()" />
         </div>
       </div>
       <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
@@ -139,51 +139,11 @@
       <div class="task-check"><i class="ti ti-check"></i></div>
       <div class="task-body">
         <p class="task-num">Task 5</p>
-        <p class="task-title">Identify a multi-tumor-type study</p>
-        <p class="task-desc">Find a study that includes data from more than one tumor type.</p>
-        <span class="task-tag tag-explore">Explore</span>
-        <div class="task-hint">
-          Look at study descriptions or metadata for studies that list multiple tumor types — for example, a study collecting both pNF and MPNST samples. Check the <strong>tumor type</strong> or <strong>tissue</strong> metadata fields.
-        </div>
-        <div class="answer-area">
-          <p class="answer-label">Study name, Synapse ID, or URL</p>
-          <input class="answer-input" type="text" placeholder="e.g. syn12345678 or https://…" onclick="event.stopPropagation()" />
-        </div>
-      </div>
-      <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
-    </div>
-  </div>
-
-  <div class="task-card" id="t6">
-    <div class="task-header">
-      <div class="task-check"><i class="ti ti-check"></i></div>
-      <div class="task-body">
-        <p class="task-num">Task 6</p>
-        <p class="task-title">Identify an animal model for cognition</p>
-        <p class="task-desc">Find a study or biobank entry that uses an animal model related to NF1-associated cognitive features.</p>
-        <span class="task-tag tag-model">Animal model</span>
-        <div class="task-hint">
-          Search for terms like <strong>cognition</strong>, <strong>learning</strong>, <strong>mouse model</strong>, or <strong>NF1 behavioral</strong>. Look for mouse, rat, or other in vivo models with cognitive phenotype annotations under biobank or model system filters.
-        </div>
-        <div class="answer-area">
-          <p class="answer-label">Model name, Synapse ID, or URL</p>
-          <input class="answer-input" type="text" placeholder="e.g. syn12345678 or https://…" onclick="event.stopPropagation()" />
-        </div>
-      </div>
-      <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
-    </div>
-  </div>
-
-  <div class="task-card" id="t7">
-    <div class="task-header">
-      <div class="task-check"><i class="ti ti-check"></i></div>
-      <div class="task-body">
-        <p class="task-num">Task 7</p>
-        <p class="task-title">Identify an immortalized NF1 cell line</p>
-        <p class="task-desc">Find an immortalized cell line derived from a patient with NF1.</p>
+        <p class="task-title">Identify an NF1 cell line</p>
+        <p class="task-desc">Find a cell line derived from a patient with NF1.</p>
         <span class="task-tag tag-model">Biobank / Model</span>
         <div class="task-hint">
-          Browse the biobank or model systems section and filter by <strong>cell line</strong> and <strong>NF1</strong>. Look for entries marked as <strong>immortalized</strong> — as opposed to primary — to identify patient-derived lines maintained for ongoing research.
+          Switch to the <strong>Tools</strong> tab and select the <strong>Resource Type</strong> and <strong>Cell Line Genetic Disorder</strong> filters. Filter for terms like <strong>Cell Line</strong> and <strong>Neurofibromatosis type 1</strong>.
         </div>
         <div class="answer-area">
           <p class="answer-label">Cell line name, Synapse ID, or URL</p>
@@ -196,7 +156,7 @@
 
   <div class="note-card" style="margin-top: 1.5rem;">
     <p class="note-label">About this workshop</p>
-    <p>The NF Data Portal (<strong>nf.synapse.org</strong>) is a Synapse-powered platform aggregating NF1, NF2, and schwannomatosis datasets from research consortia worldwide. You may need a Synapse account to request access to controlled datasets.</p>
+    <p>The NF Data Portal (<a href="https://www.nf.synapse.org" target="_blank">nf.synapse.org</a>) is a Synapse-powered platform aggregating NF1, NF2, and schwannomatosis datasets from research consortia worldwide. You may need a Synapse account to request access to controlled datasets.</p>
   </div>
 </div>
 
@@ -220,8 +180,8 @@ cards.forEach(card => {
 });
 
 function updateProgress() {
-  const pct = Math.round((done / 7) * 100);
+  const pct = Math.round((done / 5) * 100);
   document.getElementById('bar').style.width = pct + '%';
-  document.getElementById('prog-label').textContent = done + ' of 7 completed';
+  document.getElementById('prog-label').textContent = done + ' of 5 completed';
 }
 </script>
