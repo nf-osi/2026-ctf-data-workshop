@@ -1,147 +1,513 @@
 
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" />
+
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-.hunt-container { padding: 1.5rem 0; max-width: 660px; }
-.header { margin-bottom: 2rem; }
-.header h1 { font-size: 22px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
-.header p { font-size: 14px; color: var(--color-text-secondary); }
-.progress-bar-wrap { margin: 1rem 0 0; background: var(--color-background-secondary); border-radius: 999px; height: 6px; border: 0.5px solid var(--color-border-tertiary); }
-.progress-bar { height: 100%; border-radius: 999px; background: #1D9E75; transition: width 0.4s ease; }
-.progress-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 6px; }
-.task-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 12px; cursor: pointer; }
-.task-card:hover { border-color: var(--color-border-secondary); }
-.task-card.done { border-color: #1D9E75; background: #E1F5EE; }
-.task-card.done .task-title { color: #085041; }
-.task-card.done .task-desc { color: #0F6E56; }
-.task-header { display: flex; align-items: flex-start; gap: 12px; }
-.task-check { width: 22px; height: 22px; min-width: 22px; border-radius: 50%; border: 1.5px solid #888780; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; margin-top: 1px; background: var(--color-background-primary); }
-.task-card.done .task-check { background: #1D9E75; border-color: #1D9E75; }
-.task-check i { font-size: 13px; color: white; opacity: 0; transition: opacity 0.2s; }
+/* ── Design tokens ───────────────────────────────────────────── */
+:root {
+  --nf-red:           #E0473D;
+  --nf-green:         #5BB247;
+  --nf-blue:          #125e81;
+  --nf-teal:          #3FA9C9;
+  --nf-secondary:     #404b63;
+  --nf-yellow:        #F2B718;
+
+  --nf-navy-900:      #1B2A41;
+  --nf-navy-800:      #243348;
+  --nf-navy-700:      #354A63;
+  --nf-navy-600:      #4D6378;
+  --nf-navy-500:      #6B7F94;
+  --nf-navy-400:      #8FA0B2;
+  --nf-navy-300:      #B7C2CD;
+  --nf-navy-200:      #D8DFE6;
+  --nf-navy-100:      #ECEFF3;
+  --nf-navy-50:       #F5F7FA;
+
+  --nf-bg:            #FFFFFF;
+  --nf-bg-alt:        #F5F7FA;
+  --nf-bg-tint:       #EAF2F8;
+  --nf-bg-deep:       #125e81;
+  --nf-border:        #DDE3EA;
+  --nf-border-strong: #B7C2CD;
+
+  --tint-red:         #FCEAE8;
+  --tint-green:       #E7F3E2;
+  --tint-blue:        #E2EDF7;
+  --tint-teal:        #E0F1F6;
+  --tint-yellow:      #FCF1D5;
+
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --fs-xs:   0.75rem;
+  --fs-sm:   0.875rem;
+  --fs-base: 1rem;
+  --fs-md:   1.125rem;
+  --fs-lg:   1.375rem;
+  --fs-xl:   1.75rem;
+
+  --fw-regular: 400;
+  --fw-bold:    700;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(27,42,65,0.06);
+  --shadow-sm: 0 1px 3px rgba(27,42,65,0.08), 0 1px 2px rgba(27,42,65,0.04);
+  --shadow-md: 0 4px 12px rgba(27,42,65,0.10);
+  --shadow-focus: 0 0 0 3px rgba(18,94,129,0.22);
+
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ── Reset ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Shell ───────────────────────────────────────────────────── */
+.hunt-outer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.hunt-container {
+  padding: var(--space-6) var(--space-5) var(--space-7);
+  max-width: 760px;
+  width: 100%;
+  font-family: var(--font-sans);
+  color: var(--nf-navy-700);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.hunt-header {
+  margin-bottom: var(--space-6);
+}
+
+.hunt-eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nf-blue);
+  margin-bottom: var(--space-2);
+}
+
+.hunt-header h1 {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--nf-navy-900);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+}
+
+.hunt-header .hunt-desc {
+  font-size: var(--fs-sm);
+  color: var(--nf-navy-500);
+  line-height: 1.6;
+}
+
+.hunt-header .hunt-desc a {
+  color: var(--nf-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hunt-header .hunt-desc a:hover {
+  text-decoration: underline;
+}
+
+/* ── Progress ────────────────────────────────────────────────── */
+.progress-wrap {
+  margin-top: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: var(--nf-navy-100);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--nf-green);
+  transition: width 0.4s var(--ease-out);
+  width: 0%;
+}
+
+.progress-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  color: var(--nf-navy-500);
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* ── Task cards ──────────────────────────────────────────────── */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.task-card {
+  background: var(--nf-bg);
+  border: 1px solid var(--nf-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow   var(--dur-base) var(--ease-out);
+}
+
+.task-card:hover {
+  border-color: var(--nf-border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.task-card:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.task-card.done {
+  border-color: var(--nf-green);
+  background: var(--tint-green);
+}
+
+/* ── Card header row ─────────────────────────────────────────── */
+.task-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+/* Check circle */
+.task-check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--nf-navy-300);
+  background: var(--nf-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  transition:
+    background     var(--dur-fast) var(--ease-out),
+    border-color   var(--dur-fast) var(--ease-out);
+}
+
+.task-card.done .task-check {
+  background: var(--nf-green);
+  border-color: var(--nf-green);
+}
+
+.task-check i {
+  font-size: 12px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
 .task-card.done .task-check i { opacity: 1; }
-.task-body { flex: 1; }
-.task-num { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
-.task-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
-.task-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
-.task-hint { margin-top: 10px; padding: 10px 12px; background: var(--color-background-secondary); border-left: 2px solid #1D9E75; border-radius: 0; font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; display: none; }
-.task-card.expanded .task-hint { display: block; }
-.answer-area { margin-top: 10px; display: none; }
-.task-card.expanded .answer-area { display: block; }
-.answer-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-.answer-input { width: 100%; font-size: 13px; padding: 7px 10px; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); background: var(--color-background-primary); color: var(--color-text-primary); font-family: var(--font-sans); resize: none; }
-.answer-input::placeholder { color: var(--color-text-tertiary); }
-.answer-input:focus { outline: none; border-color: #1D9E75; }
-.task-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: var(--border-radius-md); font-weight: 500; margin-top: 6px; }
-.tag-access { background: #E6F1FB; color: #185FA5; }
-.tag-explore { background: #EEEDFE; color: #3C3489; }
-.tag-data { background: #E1F5EE; color: #085041; }
-.tag-viz { background: #FAEEDA; color: #633806; }
-.tag-model { background: #FAECE7; color: #712B13; }
-.note-card { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-top: 8px; }
-.note-card p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
-.note-card .note-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-.expand-icon { font-size: 14px; color: var(--color-text-tertiary); transition: transform 0.2s; flex-shrink: 0; margin-top: 2px; }
+
+/* Body text */
+.task-body { flex: 1; min-width: 0; }
+
+.task-num {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--nf-navy-400);
+  margin-bottom: var(--space-1);
+}
+
+.task-title {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  color: var(--nf-navy-900);
+  line-height: 1.35;
+  margin-bottom: var(--space-1);
+}
+
+.task-card.done .task-title { color: #2d6628; }
+
+.task-desc {
+  font-size: var(--fs-sm);
+  color: var(--nf-navy-500);
+  line-height: 1.55;
+}
+
+.task-card.done .task-desc { color: #3a7a34; }
+
+/* Expand chevron */
+.expand-icon {
+  font-size: 15px;
+  color: var(--nf-navy-400);
+  flex-shrink: 0;
+  margin-top: 3px;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
 .task-card.expanded .expand-icon { transform: rotate(180deg); }
+
+/* ── Tags ────────────────────────────────────────────────────── */
+.task-tags { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-3); }
+
+.task-tag {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+}
+
+.tag-access  { background: var(--tint-blue);   color: var(--nf-blue); }
+.tag-explore { background: var(--tint-teal);   color: #1b6e84; }
+.tag-data    { background: var(--tint-green);  color: #2d6628; }
+.tag-viz     { background: var(--tint-yellow); color: #7a5200; }
+.tag-model   { background: #fdeee8;            color: #89290e; }
+
+/* ── Expanded body ───────────────────────────────────────────── */
+.task-expanded-body { display: none; }
+.task-card.expanded .task-expanded-body { display: block; }
+
+/* Hint */
+.task-hint {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--nf-bg-tint);
+  border-left: 3px solid var(--nf-teal);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-size: var(--fs-sm);
+  color: var(--nf-navy-600);
+  line-height: 1.6;
+}
+
+.task-hint strong { color: var(--nf-navy-800); font-weight: var(--fw-bold); }
+.task-hint em { font-style: italic; color: var(--nf-navy-700); }
+
+/* Answer input */
+.answer-area { margin-top: var(--space-4); }
+
+.answer-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nf-navy-500);
+  margin-bottom: var(--space-2);
+}
+
+.answer-input {
+  width: 100%;
+  font-size: var(--fs-sm);
+  font-family: var(--font-sans);
+  color: var(--nf-navy-900);
+  background: var(--nf-bg);
+  border: 1px solid var(--nf-border-strong);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  resize: none;
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.answer-input::placeholder { color: var(--nf-navy-400); }
+
+.answer-input:focus {
+  outline: none;
+  border-color: var(--nf-blue);
+  box-shadow: var(--shadow-focus);
+}
+
+/* ── Note card ───────────────────────────────────────────────── */
+.note-card {
+  margin-top: var(--space-5);
+  background: var(--nf-bg-alt);
+  border: 1px solid var(--nf-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+}
+
+.note-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--nf-navy-400);
+  margin-bottom: var(--space-2);
+}
+
+.note-card p {
+  font-size: var(--fs-sm);
+  color: var(--nf-navy-600);
+  line-height: 1.65;
+}
+
+.note-card a {
+  color: var(--nf-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.note-card a:hover { text-decoration: underline; }
 </style>
 
+<div class="hunt-outer">
 <div class="hunt-container">
+  <!-- Accessible screen-reader title -->
   <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">NF Data Portal scavenger hunt — 5 tasks to complete</h2>
-  <div class="header">
-    <h1>NF Data Portal — Scavenger Hunt</h1>
-    <p>Explore the portal at <a href="https://www.nf.synapse.org" target="_blank">nf.synapse.org</a> by completing each task. Click a card to see hints and record your answer.</p>
-    <div class="progress-bar-wrap"><div class="progress-bar" id="bar" style="width:0%"></div></div>
-    <p class="progress-label" id="prog-label">0 of 5 completed</p>
+
+  <!-- Header -->
+  <div class="hunt-header">
+    <p class="hunt-eyebrow">NF Conference: Data Workshop 2026</p>
+    <h1>NF Data Portal Scavenger Hunt</h1>
+    <p class="hunt-desc">
+      Explore <a href="https://www.nf.synapse.org" target="_blank">nf.synapse.org</a>
+      by completing each task. Click a card for hints and to record your answer.
+    </p>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="bar"></div></div>
+      <p class="progress-label" id="prog-label">0 / 5 done</p>
+    </div>
   </div>
 
-  <div class="task-card" id="t1">
-    <div class="task-header">
-      <div class="task-check"><i class="ti ti-check"></i></div>
-      <div class="task-body">
-        <p class="task-num">Task 1</p>
-        <p class="task-title">Find the study named "Cutaneous Neurofibroma Data Resource"</p>
-        <p class="task-desc">Locate the study and submit an access request on the Wiki page.</p>
-        <span class="task-tag tag-access">Data access</span>
+  <!-- Task list -->
+  <div class="task-list">
+
+    <!-- Task 1 -->
+    <div class="task-card" id="t1" tabindex="0" role="button" aria-expanded="false">
+      <div class="task-header">
+        <div class="task-check" title="Mark complete"><i class="ti ti-check"></i></div>
+        <div class="task-body">
+          <p class="task-num">Task 1</p>
+          <p class="task-title">Request access to the "Cutaneous Neurofibroma Data Resource" study</p>
+          <p class="task-desc">Find the study and submit an access request on its Wiki page.</p>
+          <div class="task-tags"><span class="task-tag tag-access">Data access</span></div>
+        </div>
+        <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
+      </div>
+      <div class="task-expanded-body">
         <div class="task-hint">
-          <strong style="font-size:13px; color: var(--color-text-primary);">Access request statement to use:</strong><br>
+          <strong>Access request statement to use:</strong><br>
           <em>"I aim to identify potential biomarkers of cutaneous neurofibromas using this dataset."</em><br><br>
-          Switch to the <strong>Studies</strong> tab and search for "Cutaneous Neurofibroma Data Resource". View the study on Synapse and use the Request Access button to submit your justification.
+          Switch to the <strong>Studies</strong> tab and search for "<strong>Cutaneous Neurofibroma Data Resource</strong>". View the study on Synapse and use the <strong>Request Access</strong> button to submit your access request with the statement above.
         </div>
         <div class="answer-area">
           <p class="answer-label">Your answer</p>
           <input class="answer-input" type="text" placeholder="Synapse ID or URL…" onclick="event.stopPropagation()" />
         </div>
       </div>
-      <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
     </div>
-  </div>
 
-  <div class="task-card" id="t2">
-    <div class="task-header">
-      <div class="task-check"><i class="ti ti-check"></i></div>
-      <div class="task-body">
-        <p class="task-num">Task 2</p>
-        <p class="task-title">Identify a multi-tumor-type study</p>
-        <p class="task-desc">Find a study that includes data from more than one tumor type.</p>
-        <span class="task-tag tag-explore">Explore</span>
+    <!-- Task 2 -->
+    <div class="task-card" id="t2" tabindex="0" role="button" aria-expanded="false">
+      <div class="task-header">
+        <div class="task-check" title="Mark complete"><i class="ti ti-check"></i></div>
+        <div class="task-body">
+          <p class="task-num">Task 2</p>
+          <p class="task-title">Identify a multi-tumor-type study</p>
+          <p class="task-desc">Find a study that includes data from more than one tumor type.</p>
+          <div class="task-tags"><span class="task-tag tag-explore">Explore: studies</span></div>
+        </div>
+        <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
+      </div>
+      <div class="task-expanded-body">
         <div class="task-hint">
-          Switch to the <strong>Studies</strong> tab and select the <strong>Manifestation</strong> search filter. Look at study descriptions or metadata for studies that list multiple tumor types — for example, a study collecting both pNF and MPNST samples.
+          Switch to the <strong>Studies</strong> tab on the top and select the <strong>Manifestation</strong> search filter on the top left. Look at study descriptions or metadata for studies that list multiple tumor types — for example, a study collecting both pNF and MPNST samples.
         </div>
         <div class="answer-area">
           <p class="answer-label">Study name, Synapse ID, or URL</p>
           <input class="answer-input" type="text" placeholder="e.g. syn12345678 or https://…" onclick="event.stopPropagation()" />
         </div>
       </div>
-      <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
     </div>
-  </div>
 
-  <div class="task-card" id="t3">
-    <div class="task-header">
-      <div class="task-check"><i class="ti ti-check"></i></div>
-      <div class="task-body">
-        <p class="task-num">Task 3</p>
-        <p class="task-title">Find a pNF drug screening assay dataset</p>
-        <p class="task-desc">Locate a dataset containing drug screening assay results for plexiform neurofibromas.</p>
-        <span class="task-tag tag-data">Dataset discovery</span>
+    <!-- Task 3 -->
+    <div class="task-card" id="t3" tabindex="0" role="button" aria-expanded="false">
+      <div class="task-header">
+        <div class="task-check" title="Mark complete"><i class="ti ti-check"></i></div>
+        <div class="task-body">
+          <p class="task-num">Task 3</p>
+          <p class="task-title">Identify a pNF drug screening assay dataset</p>
+          <p class="task-desc">Find a dataset containing drug screening assay results for plexiform neurofibromas.</p>
+          <div class="task-tags"><span class="task-tag tag-data">Explore: datasets</span></div>
+        </div>
+        <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
+      </div>
+      <div class="task-expanded-body">
         <div class="task-hint">
-          Switch to the <strong>Datasets</strong> tab and select <strong>Manifestation</strong> and <strong>Data Type</strong> search filters. Try filtering or searching for <strong>plexiform neurofibroma</strong> combined with <strong>drug screen</strong>.
+          Switch to the <strong>Datasets</strong> tab and select the <strong>Manifestation</strong> and <strong>Data Type</strong> search filters. Try filtering or searching for <strong>plexiform neurofibroma</strong> combined with <strong>drug screen</strong>.
         </div>
         <div class="answer-area">
           <p class="answer-label">Your answer</p>
           <input class="answer-input" type="text" placeholder="Dataset name, Synapse ID, or URL…" onclick="event.stopPropagation()" />
         </div>
       </div>
-      <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
     </div>
-  </div>
 
-  <div class="task-card" id="t4">
-    <div class="task-header">
-      <div class="task-check"><i class="ti ti-check"></i></div>
-      <div class="task-body">
-        <p class="task-num">Task 4</p>
-        <p class="task-title">Identify an animal model for cognition</p>
-        <p class="task-desc">Find a tool entry for an animal model related to NF1-associated cognitive features.</p>
-        <span class="task-tag tag-model">Animal model</span>
+    <!-- Task 4 -->
+    <div class="task-card" id="t4" tabindex="0" role="button" aria-expanded="false">
+      <div class="task-header">
+        <div class="task-check" title="Mark complete"><i class="ti ti-check"></i></div>
+        <div class="task-body">
+          <p class="task-num">Task 4</p>
+          <p class="task-title">Identify an animal model for cognition</p>
+          <p class="task-desc">Find a tool entry for an animal model related to NF1-associated cognitive features.</p>
+          <div class="task-tags"><span class="task-tag tag-model">Explore: tools</span></div>
+        </div>
+        <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
+      </div>
+      <div class="task-expanded-body">
         <div class="task-hint">
-          Switch to the <strong>Tools</strong> tab and select the <strong>Resource Type</strong>, <strong>Animal Model of Manifestation</strong>, and <strong>Animal Model of Genetic Disorder</strong> filters. Filter for terms like <strong>Animal Model</strong>, <strong>Cognition</strong>, and <strong>Neurofibromatosis type 1</strong>.
+          Switch to the <strong>Tools</strong> tab and select the <strong>Resource Type</strong>, <strong>Animal Model of Manifestation</strong>, and <strong>Animal Model of Genetic Disorder</strong> search filters. Filter for terms like <strong>Animal Model</strong>, <strong>Cognition</strong>, and <strong>Neurofibromatosis type 1</strong>.
         </div>
         <div class="answer-area">
           <p class="answer-label">Model name, Synapse ID, or URL</p>
           <input class="answer-input" type="text" placeholder="e.g. syn12345678 or https://…" onclick="event.stopPropagation()" />
         </div>
       </div>
-      <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
     </div>
-  </div>
 
-  <div class="task-card" id="t5">
-    <div class="task-header">
-      <div class="task-check"><i class="ti ti-check"></i></div>
-      <div class="task-body">
-        <p class="task-num">Task 5</p>
-        <p class="task-title">Identify an NF1 cell line</p>
-        <p class="task-desc">Find a cell line derived from a patient with NF1.</p>
-        <span class="task-tag tag-model">Biobank / Model</span>
+    <!-- Task 5 -->
+    <div class="task-card" id="t5" tabindex="0" role="button" aria-expanded="false">
+      <div class="task-header">
+        <div class="task-check" title="Mark complete"><i class="ti ti-check"></i></div>
+        <div class="task-body">
+          <p class="task-num">Task 5</p>
+          <p class="task-title">Identify an NF1 cell line</p>
+          <p class="task-desc">Find a tool entry for a cell line derived from a patient with NF1.</p>
+          <div class="task-tags"><span class="task-tag tag-model">Explore: tools</span></div>
+        </div>
+        <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
+      </div>
+      <div class="task-expanded-body">
         <div class="task-hint">
           Switch to the <strong>Tools</strong> tab and select the <strong>Resource Type</strong> and <strong>Cell Line Genetic Disorder</strong> filters. Filter for terms like <strong>Cell Line</strong> and <strong>Neurofibromatosis type 1</strong>.
         </div>
@@ -150,38 +516,53 @@
           <input class="answer-input" type="text" placeholder="e.g. syn12345678 or https://…" onclick="event.stopPropagation()" />
         </div>
       </div>
-      <i class="ti ti-chevron-down expand-icon" aria-hidden="true"></i>
     </div>
-  </div>
 
-  <div class="note-card" style="margin-top: 1.5rem;">
+  </div><!-- /.task-list -->
+
+  <!-- About note -->
+  <div class="note-card">
     <p class="note-label">About this workshop</p>
     <p>The NF Data Portal (<a href="https://www.nf.synapse.org" target="_blank">nf.synapse.org</a>) is a Synapse-powered platform aggregating NF1, NF2, and schwannomatosis datasets from research consortia worldwide. You may need a Synapse account to request access to controlled datasets.</p>
   </div>
-</div>
+</div><!-- /.hunt-container -->
+</div><!-- /.hunt-outer -->
 
 <script>
-const cards = document.querySelectorAll('.task-card');
-let done = 0;
+(function () {
+  const TOTAL = 5;
+  let done = 0;
 
-cards.forEach(card => {
-  card.addEventListener('click', () => {
-    card.classList.toggle('expanded');
+  document.querySelectorAll('.task-card').forEach(card => {
+    /* Expand / collapse on card click */
+    card.addEventListener('click', () => {
+      const isExpanded = card.classList.toggle('expanded');
+      card.setAttribute('aria-expanded', String(isExpanded));
+    });
+
+    /* Keyboard support */
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+
+    /* Mark complete on check click */
+    const check = card.querySelector('.task-check');
+    check.addEventListener('click', e => {
+      e.stopPropagation();
+      const wasDone = card.classList.contains('done');
+      card.classList.toggle('done');
+      done += wasDone ? -1 : 1;
+      updateProgress();
+    });
   });
 
-  const check = card.querySelector('.task-check');
-  check.addEventListener('click', e => {
-    e.stopPropagation();
-    const wasDone = card.classList.contains('done');
-    card.classList.toggle('done');
-    done += wasDone ? -1 : 1;
-    updateProgress();
-  });
-});
-
-function updateProgress() {
-  const pct = Math.round((done / 5) * 100);
-  document.getElementById('bar').style.width = pct + '%';
-  document.getElementById('prog-label').textContent = done + ' of 5 completed';
-}
+  function updateProgress() {
+    const pct = Math.round((done / TOTAL) * 100);
+    document.getElementById('bar').style.width = pct + '%';
+    document.getElementById('prog-label').textContent = done + ' / ' + TOTAL + ' done';
+  }
+})();
 </script>
