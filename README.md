@@ -40,7 +40,7 @@ Use the Pluto platform to perform and visualize bioinformatic analyses on datase
 ## Before You Arrive
 
 - **All tracks:** Bring a laptop with a modern web browser (Chrome or Firefox recommended).
-- **Tracks 2:** You will need a free [Synapse account](https://www.synapse.org/register). Please register in advance!
+- **Track 2:** You will need a free [Synapse account](https://www.synapse.org/register). Please register in advance!
 
 ## Questions?
 
