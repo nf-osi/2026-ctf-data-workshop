@@ -88,7 +88,7 @@ Once the analysis appears, you can customize the plot filters, colors, and highl
 
 In this volcano plot, the significantly increased genes in the -/- (homozygous) group relative to the +/- (heterozygous) group have a positive log2 fold change and significant adjusted p-values. On the other hand, the significantly decreased genes in the homozygous group relative to the heterozygous group have *negative* log2 fold changes, and are on the left side of the x-axis. 
 
-Click a circle around a few points on the plot to lasso a group of genes. That group of genes will then be highlighted and labeled for quick reference. The are named in the plot settings under "Labeled features" for reference. 
+Click a circle around a few points on the plot to lasso a group of genes. That group of genes will then be highlighted and labeled for quick reference. They are named in the plot settings under "Labeled features" for reference. 
 
 <p align="center">
 <img src="images/step4_volcano.png" alt="step4_volcano" width="800">
@@ -102,7 +102,7 @@ In Pluto, all analyses have results and methods tabs under the plot:
 
 You can also export plots which will lead to a customization page, allowing additional edits before publication! 
 
-**This is a particularly important step because your current trial period means that all analyses will be removed after 24 hours.**
+**This is a particularly important step because your account type means that all analyses will be removed after 24 hours.**
 
 <p align="center">
 <img src="images/step4_export.png" alt="step4_export" width="300"> 
