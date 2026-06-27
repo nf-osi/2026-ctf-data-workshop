@@ -54,7 +54,7 @@ In this workshop, we will be exploring a specific public dataset from the NF Dat
 <img src="images/step3_projects_tab.png" alt="step3_projects_tab" width="400">
 </p>
 
-Click on the project entitled "CTF NF Target Discovery Hub - External". If you **do not** see this project, it means you have not yet been added to this CTF project. Please contact one of the workshop organizers to let them know. 
+Click on the project entitled "NF Target Discovery Hub - External". If you **do not** see this project, it means you have not yet been added to this CTF project. Please contact one of the workshop organizers to let them know. 
 
 You will see a number of experiments to analyze within this project. For this workshop, click on the dataset entitled "Human NF1 Low Grade Glioma RNAseq Data" or use this [link](https://app.pluto.bio/experiments/PLX312906). 
 
