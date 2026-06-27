@@ -37,9 +37,9 @@ In Part 2 of the workshop, you will download data from the NF Data Portal using 
 **Step 1 — Create a Personal Access Token**
 
 1. Go to [synapse.org](https://www.synapse.org) and log in
-2. Click your profile icon (top right) → **Account Settings**
-3. Scroll to **Personal Access Tokens** and click **Create new token**
-4. Give it a name (e.g. `nf-workshop`), leave all permissions at their defaults, and click **Create**
+2. Click your profile icon (bottom left) → **Account Settings**
+3. Scroll to **Personal Access Tokens** and click **Manage personal access tokens** and then **Create new token**.
+4. Give it a name (e.g. `nf-workshop`), set the permissions to View and Download (not Modify), and click **Create token**
 5. Copy the token — you will only see it once
 
 **Step 2 — Configure the Synapse client**
