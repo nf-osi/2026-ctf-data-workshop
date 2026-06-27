@@ -38,6 +38,5 @@ By the end of this session you will be able to:
 
 ---
 
-[Software setup →](setup.md) | [View step-by-step instructions →](instructions.md)
-
+[Next step: setup →](setup.md)
 [← Back to workshop home](../README.md)
