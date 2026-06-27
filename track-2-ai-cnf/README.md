@@ -26,10 +26,8 @@ Researchers isolated Schwann cells from surgically removed cNF tumors, immortali
 ## What You Will Need
 
 - A laptop with a modern web browser
-- A free [Synapse account](https://www.synapse.org/register) — **please register before the workshop** (see [SETUP.md](../SETUP.md))
-- Access to your workshop EC2 environment — URL and password provided at the door (no local software installation needed)
-
-## Learning Objectives
+- A free [Synapse account](https://www.synapse.org/register) — (see [SETUP.md](../SETUP.md) for instructions)
+- Access to your workshop EC2 environment — organizers will hand out access cards to people who are interested in this track
 
 By the end of this session you will be able to:
 
