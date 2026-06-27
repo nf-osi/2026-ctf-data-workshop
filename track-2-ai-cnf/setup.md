@@ -10,8 +10,8 @@ The workshop provides a pre-configured cloud environment for each participant. Y
 ### How to connect
 
 1. Open Chrome or Firefox
-2. Navigate to the URL on your credential card (looks like `https://12.34.56.78:8080/?folder=/home/ubuntu/nf-workshop`)
-3. You will see a browser security warning about an invalid certificate — this is expected. The server uses a self-signed certificate.
+2. Navigate to the URL on your credential card (looks like `sageb.io/nfXXX`)
+3. You will see a browser security warning about an invalid certificate — this is expected and safe to proceed. The server uses a self-signed certificate.
    - **Chrome:** click **Advanced**, then **Proceed to [IP address] (unsafe)**
    - **Firefox:** click **Advanced**, then **Accept the Risk and Continue**
 4. Enter the password from your credential card
@@ -27,9 +27,8 @@ VS Code opens directly to `~/nf-workshop/`. You will see:
 └── data/               ← empty for now; you will download data here in Part 2
 ```
 
-To open a terminal:
-- Menu → Terminal → New Terminal
-- Or press `` Ctrl+` ``
+Ignore the "agent" panel on the right - this is not Claude Code. Instead, open the terminal:
+- Menu (☰) → Terminal → New Terminal
 
 ### Set up Synapse access
 
