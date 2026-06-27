@@ -29,6 +29,7 @@ VS Code opens directly to `~/nf-workshop/`. You will see:
 
 Ignore the "agent" panel on the right - this is not Claude Code. Instead, open the terminal:
 - Menu (☰) → Terminal → New Terminal
+- The terminal will pop up at the bottom of the screen. feel free to make it larger by dragging the edges of the panes. Most of the work will be done directly in the terminal pane.
 
 ### Set up Synapse access
 
