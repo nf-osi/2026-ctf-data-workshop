@@ -1,0 +1,20 @@
+{
+  "raw_posts": 12130,
+  "kept": 1170,
+  "dropped": 10960,
+  "kept_by_account_type": {
+    "individual": 551,
+    "org_or_highvolume": 619
+  },
+  "kept_by_precision_tier": {
+    "A": 802,
+    "B": 368
+  },
+  "drop_reasons": {
+    "automated account (bot/preprint/bridge feed)": 9512,
+    "ambiguous NF1/NF2 match, no disease/medical context": 1430,
+    "duplicate repost from same author": 18
+  },
+  "kept_individual_posts": 551,
+  "kept_unique_authors": 467
+}

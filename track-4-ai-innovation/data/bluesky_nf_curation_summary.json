@@ -1,0 +1,33 @@
+{
+  "labeled_total": 1170,
+  "missing_labels": 0,
+  "by_voice_type": {
+    "advocacy_org": 468,
+    "clinician_researcher": 297,
+    "patient": 113,
+    "news_media": 99,
+    "unrelated_false_positive": 83,
+    "family_caregiver": 58,
+    "unclear": 30,
+    "fundraiser_promo": 22
+  },
+  "patient_voices_kept": 160,
+  "patient_voices_with_symptoms": 87,
+  "patient_voices_with_medication": 30,
+  "top_themes": {
+    "daily_living": 108,
+    "diagnosis_journey": 84,
+    "mental_health": 53,
+    "advocacy": 50,
+    "tumor_burden": 49,
+    "treatment_experience": 25,
+    "genetics_inheritance": 23,
+    "surgery": 21,
+    "relationships": 15,
+    "pain_management": 12,
+    "disfigurement": 3,
+    "work_school": 3,
+    "fundraiser_promo": 1,
+    "research": 1
+  }
+}
